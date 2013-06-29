@@ -29,6 +29,28 @@
           <h2><%= title %></h2>
         </script>
 
+        <script type="text/template" id="event-create">
+          <a href="#">Back</a>
+          <h2>Create an event</h2>
+          <form id="event-create-form">
+            <label>Title:</label>
+            <input type="text" name="title" class="title">
+
+            <label>Description:</label>
+            <input type="text" name="description" class="description">
+
+            <label>Time:</label>
+            <input type="text" name="time" class="time">
+
+            <label>Location:</label>
+            <input type="text" name="location" class="location">
+
+            <br/>
+
+            <input type="submit" value="Create" class="post-event"/>
+          </form>
+        </script>
+
         <!-- endtemplates -->
 
         <!--[if lt IE 7]>
@@ -50,6 +72,7 @@
         <script src="/scripts/models/event.js"></script>
         <script src="/scripts/views/event.js"></script>
         <script src="/scripts/views/event_list.js"></script>
+        <script src="/scripts/views/event_create.js"></script>
         <script src="/scripts/router.js"></script>
         <script src="/scripts/mock_data.js"></script>
         <script src="/scripts/main.js"></script>
