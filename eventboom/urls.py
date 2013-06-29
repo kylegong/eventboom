@@ -3,14 +3,14 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 admin.autodiscover()
 
-from events.views import GetEvents
+from events import views
 
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'ihasinterests.views.home', name='home'),
     # url(r'^ihasinterests/', include('ihasinterests.foo.urls')),
 
-    url(r'^api/v1/events/', GetEvents.as_view(), name='get_events'),
+    url(r'^api/v1/events/', views.get_events, name='get_events'),
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 

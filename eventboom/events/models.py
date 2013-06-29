@@ -39,6 +39,8 @@ class UserProfile(models.Model):
 
     @staticmethod
     def validate_phone(phone_number):
+        if not phone_number:
+            return ''
         phone_number = ''.join([c for c in phone_number if c in '1234567890'])
         if phone_number[0] == '1':
             phone_number = phone_number[1:]
