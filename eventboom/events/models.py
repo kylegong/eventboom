@@ -35,6 +35,7 @@ class UserProfile(models.Model):
     phone = models.CharField(max_length=10, blank=True, null=True)
     image = stdimage.StdImageField(upload_to=IMAGE_PATH, size=(300, 300),
                                    blank=True, null=True)
+    uuid = UUIDField()
 
     @staticmethod
     def validate_phone(phone_number):
@@ -50,4 +51,3 @@ class UserProfile(models.Model):
         self.phone = UserProfile.validate_phone(self.phone)
         super(UserProfile, self).clean_fields(*args, **kwargs)
 
-    uuid = UUIDField()
