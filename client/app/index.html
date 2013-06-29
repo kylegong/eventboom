@@ -75,13 +75,9 @@
             <label>Title:</label>
             <input type="text" name="title" class="title">
 
-            <label>Description:</label>
-            <input type="text" name="description" class="description">
-
             <label>Time:</label>
 
             <select name="month" class="month">
-              <option value="0" selected>&mdash;</option>
               <option value="1">January</option>
               <option value="2">February</option>
               <option value="3">March</option>
@@ -97,7 +93,6 @@
             </select>
 
             <select name="day" class="day">
-              <option value="0" selected>&mdash;</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -113,7 +108,6 @@
             </select>
 
             <select name="year" class="year">
-              <option value="0" selected>&mdash;</option>
               <option value="2013">2013</option>
               <option value="2014">2014</option>
             </select>
@@ -146,11 +140,43 @@
             </select>
 
             <label>Location:</label>
-            <input type="text" name="location" class="location">
+            <input type="text" name="location" class="location" placeholder="Optional">
+
+            <select name="neighborhood" class="neighborhood">
+              <option value="null" selected>Neighborhood</option>
+              <option value="Alemeda">Alemeda</option>
+              <option value="Alamo Square">Alamo Square</option>
+              <option value="Castro">Castro</option>
+              <option value="Cole Valley">Cole Valley</option>
+              <option value="Hayes Valley">Hayes Valley</option>
+              <option value="Inner Sunset">Inner Sunset</option>
+              <option value="Marina">Marina</option>
+              <option value="Mission">Mission</option>
+              <option value="Noe Valley">Noe Valley</option>
+              <option value="NOPA">NOPA</option>
+              <option value="North Beach">North Beach</option>
+              <option value="Pac Heights">Pac Heights</option>
+              <option value="SOMA">SOMA</option>
+            </select>
+
+            <label>Description:</label>
+            <textarea name="description" class="description"></textarea>
 
             <br/>
 
-            <input type="submit" value="Create" class="post-event"/>
+            <select name="category" class="category">
+              <option value="null" selected>Event Category</option>
+              <option value="lunch">Lunch</option>
+              <option value="sports">Sports</option>
+              <option value="service">Service</option>
+            </select>
+
+            <input type="text" name="min_attendees" class="min_attendees" placeholder="Min people (optional)" />
+            <input type="text" name="max_attendees" class="max_attendees" placeholder="Max people (optional)" />
+
+            <br/>
+
+            <input type="submit" value="Create" class="post-event"/> Or <a href="#">Cancel</a>
           </form>
         </script>
         <!-- endtemplates -->
