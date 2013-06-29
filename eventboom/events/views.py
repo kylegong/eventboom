@@ -5,6 +5,9 @@ from django.views.generic import ListView
 
 from events.models import Event
 
+# Django's class-based views return http/html responses by default
+# This simple mix-in, copied from url at top, overrides this behavior
+# to return JSON instead
 class JSONResponseMixin(object):
     def render_to_response(self, context):
         "Returns a JSON response containing 'context' as payload"
@@ -24,14 +27,16 @@ class JSONResponseMixin(object):
         # -- can be serialized as JSON.
         return json.dumps(context)
 
-
+# This Class-based list view just sets which model to use for the subsequent REST calls we will write
 class EventsBase(ListView):
     context_object_name = "events_list"
     
     def get_queryset(self):
         return Events.objects.all()
-    
-# This is Read for Events collection: "GET api/v1/events" should call this and return list of all events
+
+
+# CRUD call GET to Events (Read)
+# This is a Read call to the Events collection: "GET api/v1/events" should call this and return list of all events
 class GetEvents(JSONResponseMixin, EventsBase):
     def convert_context_to_json(self, context):
         context['events_list'] = Events.objects.values('title', 'location')
