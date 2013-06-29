@@ -3,11 +3,12 @@ from django.db import models
 
 # Third-party
 import stdimage
-from Crypto.Random import random
 
-DEFAULT_CHAR_FIELD_LENGTH
+DEFAULT_CHAR_FIELD_LENGTH = 255
 
 class Event(models.Model):
+    IMAGE_PATH = "images/event"
+
     title = models.CharField(max_length=DEFAULT_CHAR_FIELD_LENGTH)
     datetime = models.DateTimeField(blank=True, null=True)
     # more sophisticated location?
@@ -16,26 +17,18 @@ class Event(models.Model):
     description = models.TextField(blank=True, null=True)
     min_attendees = models.IntegerField(blank=True, null=True)
     max_attendees = models.IntegerField(blank=True, null=True)
-    creator = models.ForeignKey('User')
+    creator = models.ForeignKey('UserProfile')
+    image = stdimage.StdImageField(upload_to=IMAGE_PATH, size=(300, 300))
 
 
-class User(models.Model):
-    USER_IMAGE_PATH = "images/user"
+class UserProfile(models.Model):
+    IMAGE_PATH = "images/user_profile"
+    DEFAULT_TOKEN_BITLENGTH = 64
 
     display_name = models.CharField(max_length=DEFAULT_CHAR_FIELD_LENGTH)
     email = models.EmailField(blank=True, null=True)
-    phone = models.CharField(max_length=20)
-    image = stdimage.StdImageField(upload_to=USER_IMAGE_PATH,
-                                   size=(300, 300))
-    account = models.ForeignKey('Account')
+    # Store digits only here
+    phone = models.CharField(max_length=10, blank=True, null=True)
+    image = stdimage.StdImageField(upload_to=IMAGE_PATH, size=(300, 300))
 
-
-class Account(models.Model):
-    DEFAULT_TOKEN_BITLENGTH = 64
-
-    token = models.CharField(max_length=DEFAULT_CHAR_FIELD_LENGTH,
-                             blank=True)
-
-    @staticmethod
-    def generate_random_token(bitlength=DEFAULT_TOKEN_BITLENGTH):
-        return base64.urlsafe_b64encode(Random.new().read(bitlength))
+    uuid = models.UUIDField()
