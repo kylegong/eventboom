@@ -24,6 +24,25 @@ class Event(models.Model):
     image = StdImageField(upload_to=IMAGE_PATH, size=(300, 300),
                                    blank=True, null=True)
 
+    FULL_VALUES = (
+            'id',
+            'title',
+            'datetime',
+            'location',
+            'description',
+            'min_attendees',
+            'max_attendees',
+            'creator_id',
+            'image',
+    )
+
+    LIST_VALUES = (
+            'id',
+            'title',
+            'datetime',
+            'location',
+    )
+
 
 class UserProfile(models.Model):
     IMAGE_PATH = "images/user_profile"
@@ -38,7 +57,7 @@ class UserProfile(models.Model):
     uuid = UUIDField()
 
     @staticmethod
-    def validate_phone(phone_number):
+    def _validate_phone(phone_number):
         if not phone_number:
             return ''
         phone_number = ''.join([c for c in phone_number if c in '1234567890'])
@@ -50,6 +69,14 @@ class UserProfile(models.Model):
             return phone_number[:10]
 
     def clean_fields(self, *args, **kwargs):
-        self.phone = UserProfile.validate_phone(self.phone)
+        self.phone = UserProfile._validate_phone(self.phone)
         super(UserProfile, self).clean_fields(*args, **kwargs)
+
+    FULL_VALUES = (
+                'id',
+                'display_name',
+                'email',
+                'phone',
+                'image',
+    )
 
