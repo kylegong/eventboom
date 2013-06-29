@@ -1,14 +1,15 @@
 window.Boom = window.Boom || {}
 
 window.Boom.EventListView = Backbone.View.extend({
-  el: '#main',
+  tagName: 'ul',
   render: function() {
-    this.$el.empty().append('<ul></ul>');
+    var self = this;
+    this.$el.empty();
     this.collection.each(function(event) {
       var li = $('<li></li>').append(
-        new Boom.EventView({model: event}).render().el
+        new Boom.EventShortView({model: event}).render().el
       );
-      this.$('ul:first').append(li);
+      self.$el.append(li);
     });
     return this;
   }

@@ -19,16 +19,45 @@
     </head>
     <body>
         <div class="container">
+          <a href="#create">Create an event</a>
           <div id="main">
             <h1>Loading...</h1>
           </div>
         </div>
 
         <!-- Underscore templates -->
-        <script type="text/template" id="event">
-          <h2><%= title %></h2>
+        <script type="text/template" id="filters">
+          <select id="when">
+            <option value=''>All</option>
+            <option value='today'>Today</option>
+            <option value='3days'>Next 3 Days</option>
+            <option value='7days'>Next 7 Days</option>
+          </select>
         </script>
-
+        <script type="text/template" id="index">
+          <div class="filters"></div>
+          <div class="event-list"></div>
+        </script>
+        <script type="text/template" id="event-short">
+          <h2><a href='#event/<%= id %>'><%= title %></a></h2>
+          <ul>
+          <% for(var tag in tags) { %>
+            <li><%= tags[tag] %></li>
+          <% } %>
+          </ul>
+          <p><%= date %></p>
+        </script>
+        <script type="text/template" id="event">
+          <a href="#">Back to the list</a>
+          <h1><%= title %></h1>
+          <p><%= description %></p>
+          <p><%= date %></p>
+          <ul>
+          <% for(var tag in tags) { %>
+            <li><%= tags[tag] %></li>
+          <% } %>
+          </ul>
+        </script>
         <script type="text/template" id="event-create">
           <a href="#">Back</a>
           <h2>Create an event</h2>
@@ -50,7 +79,6 @@
             <input type="submit" value="Create" class="post-event"/>
           </form>
         </script>
-
         <!-- endtemplates -->
 
         <!--[if lt IE 7]>
@@ -71,6 +99,9 @@
         <script src="/bower_components/backbone/backbone.js"></script>
         <script src="/scripts/models/event.js"></script>
         <script src="/scripts/views/event.js"></script>
+        <script src="/scripts/views/index.js"></script>
+        <script src="/scripts/views/filters.js"></script>
+        <script src="/scripts/views/event_short.js"></script>
         <script src="/scripts/views/event_list.js"></script>
         <script src="/scripts/views/event_create.js"></script>
         <script src="/scripts/router.js"></script>
