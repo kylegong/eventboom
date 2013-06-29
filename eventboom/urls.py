@@ -1,9 +1,8 @@
 from django.conf.urls import patterns, include, url
+from django.contrib import admin
+admin.autodiscover()
 
 from events.views import GetEvents
-# Uncomment the next two lines to enable the admin:
-# from django.contrib import admin
-# admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:

@@ -3,7 +3,7 @@ from django import http
 from django.utils import simplejson as json
 from django.views.generic import ListView
 
-from events.models import Event
+from models import Event
 
 # Django's class-based views return http/html responses by default
 # This simple mix-in, copied from url at top, overrides this behavior
@@ -30,7 +30,7 @@ class JSONResponseMixin(object):
 # This Class-based list view just sets which model to use for the subsequent REST calls we will write
 class EventsBase(ListView):
     context_object_name = "events_list"
-    
+
     def get_queryset(self):
         return Events.objects.all()
 

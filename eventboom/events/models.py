@@ -1,5 +1,6 @@
 # Django
 from django.db import models
+from django_extensions.db.fields import UUIDField
 
 # Third-party
 import stdimage
@@ -31,4 +32,4 @@ class UserProfile(models.Model):
     phone = models.CharField(max_length=10, blank=True, null=True)
     image = stdimage.StdImageField(upload_to=IMAGE_PATH, size=(300, 300))
 
-    uuid = models.UUIDField()
+    uuid = UUIDField()
