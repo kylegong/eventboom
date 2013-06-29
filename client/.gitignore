@@ -1,0 +1,4 @@
+*.scssc
+.jshintrc
+node_modules
+.tmp
