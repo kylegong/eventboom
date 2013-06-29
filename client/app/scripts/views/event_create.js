@@ -19,6 +19,8 @@ window.Boom.EventCreateView = Backbone.View.extend({
   },
   postEvent: function(e) {
     e.preventDefault();
+    if ( !this.validateEvent() ) return;
+
     var form = $('#event-create-form');
     var event_date =  new Date(
                         form.find('.year').val(),
@@ -40,5 +42,27 @@ window.Boom.EventCreateView = Backbone.View.extend({
     var event = new Boom.EventModel(data);
     window.Boom.Data.push(event.toJSON());
     window.router.navigate('/', { trigger: true });
+  },
+  validateEvent: function() {
+    var validated_fields = [
+      this.validateField('.title'),
+      this.validateField('.neighborhood'),
+      this.validateField('.description'),
+      this.validateField('.category')
+    ];
+    var all_valid = _.indexOf(validated_fields, false) === -1;
+    return all_valid;
+  },
+  validateField: function(field_class) {
+    var valid = true;
+    var form = $('#event-create-form');
+    var field_value = form.find(field_class).val();
+    if (field_value == '' || field_value == 'null') {
+      valid = false;
+      form.find(field_class).css({'border': "1px solid #c00"})
+    } else {
+      form.find(field_class).css({'border': "1px solid #ccc"})
+    }
+    return valid;
   }
 });
