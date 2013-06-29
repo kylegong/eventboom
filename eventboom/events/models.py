@@ -1,11 +1,14 @@
 # Django
+from django.core import exceptions
 from django.db import models
 
 # Third-party
+from django_extensions.db import fields as ext_fields
 import stdimage
 
 DEFAULT_CHAR_FIELD_LENGTH = 255
 
+# Models
 class Event(models.Model):
     IMAGE_PATH = "images/event"
 
@@ -18,7 +21,8 @@ class Event(models.Model):
     min_attendees = models.IntegerField(blank=True, null=True)
     max_attendees = models.IntegerField(blank=True, null=True)
     creator = models.ForeignKey('UserProfile')
-    image = stdimage.StdImageField(upload_to=IMAGE_PATH, size=(300, 300))
+    image = stdimage.StdImageField(upload_to=IMAGE_PATH, size=(300, 300),
+                                   blank=True, null=True)
 
 
 class UserProfile(models.Model):
@@ -29,6 +33,21 @@ class UserProfile(models.Model):
     email = models.EmailField(blank=True, null=True)
     # Store digits only here
     phone = models.CharField(max_length=10, blank=True, null=True)
-    image = stdimage.StdImageField(upload_to=IMAGE_PATH, size=(300, 300))
+    image = stdimage.StdImageField(upload_to=IMAGE_PATH, size=(300, 300),
+                                   blank=True, null=True)
 
-    uuid = models.UUIDField()
+    uuid = ext_fields.UUIDField()
+
+    @staticmethod
+    def validate_phone(phone_number):
+        phone_number = ''.join([c for c in phone_number if c in '1234567890'])
+        if phone_number[0] == '1':
+            phone_number = phone_number[1:]
+        if phone_number < 10:
+            raise exceptions.ValidationError
+        else:
+            return phone_number[:10]
+
+    def clean_fields(self, *args, **kwargs):
+        self.phone = UserProfile.validate_phone(self.phone)
+        super(UserProfile, self).clean_fields(*args, **kwargs)
