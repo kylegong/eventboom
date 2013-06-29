@@ -12,7 +12,7 @@ window.Boom.Router = Backbone.Router.extend({
     }).render();
   },
   create: function() {
-    $('body').text('create event')
+    new window.Boom.EventCreateView().render();
   },
   show: function(id) {
     $('body').text('show: ' + id)

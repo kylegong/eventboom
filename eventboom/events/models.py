@@ -3,7 +3,7 @@ from django.core import exceptions
 from django.db import models
 
 # Third-party
-from django_extensions.db import fields as ext_fields
+from django_extensions.db.fields import UUIDField
 import stdimage
 
 DEFAULT_CHAR_FIELD_LENGTH = 255
@@ -36,8 +36,6 @@ class UserProfile(models.Model):
     image = stdimage.StdImageField(upload_to=IMAGE_PATH, size=(300, 300),
                                    blank=True, null=True)
 
-    uuid = ext_fields.UUIDField()
-
     @staticmethod
     def validate_phone(phone_number):
         phone_number = ''.join([c for c in phone_number if c in '1234567890'])
@@ -51,3 +49,5 @@ class UserProfile(models.Model):
     def clean_fields(self, *args, **kwargs):
         self.phone = UserProfile.validate_phone(self.phone)
         super(UserProfile, self).clean_fields(*args, **kwargs)
+
+    uuid = UUIDField()
