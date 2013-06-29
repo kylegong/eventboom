@@ -7,7 +7,7 @@ window.Boom.Router = Backbone.Router.extend({
     'event/:id': 'show'
   },
   index: function() {
-    new window.Boom.EventListView({
+    new window.Boom.IndexView({
       collection: new Boom.EventCollection(window.Boom.Data)
     }).render();
   },
@@ -15,6 +15,8 @@ window.Boom.Router = Backbone.Router.extend({
     new window.Boom.EventCreateView().render();
   },
   show: function(id) {
-    $('body').text('show: ' + id)
+    new Boom.EventView({
+      model: new Boom.EventModel(Boom.Data.get(parseInt(id, 10)))
+    }).render();
   }
 })
