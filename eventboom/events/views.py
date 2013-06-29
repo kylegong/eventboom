@@ -32,12 +32,12 @@ class EventsBase(ListView):
     context_object_name = "events_list"
 
     def get_queryset(self):
-        return Events.objects.all()
+        return Event.objects.all()
 
 
 # CRUD call GET to Events (Read)
 # This is a Read call to the Events collection: "GET api/v1/events" should call this and return list of all events
 class GetEvents(JSONResponseMixin, EventsBase):
     def convert_context_to_json(self, context):
-        context['events_list'] = Events.objects.values('title', 'location')
+        context['events_list'] = Event.objects.values('title', 'location')
         return json.dumps(context)
