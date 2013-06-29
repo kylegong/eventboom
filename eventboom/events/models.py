@@ -4,7 +4,7 @@ from django.db import models
 
 # Third-party
 from django_extensions.db.fields import UUIDField
-import stdimage
+from stdimage import StdImageField
 
 DEFAULT_CHAR_FIELD_LENGTH = 255
 
@@ -21,7 +21,7 @@ class Event(models.Model):
     min_attendees = models.IntegerField(blank=True, null=True)
     max_attendees = models.IntegerField(blank=True, null=True)
     creator = models.ForeignKey('UserProfile')
-    image = stdimage.StdImageField(upload_to=IMAGE_PATH, size=(300, 300),
+    image = StdImageField(upload_to=IMAGE_PATH, size=(300, 300),
                                    blank=True, null=True)
 
 
@@ -33,7 +33,7 @@ class UserProfile(models.Model):
     email = models.EmailField(blank=True, null=True)
     # Store digits only here
     phone = models.CharField(max_length=10, blank=True, null=True)
-    image = stdimage.StdImageField(upload_to=IMAGE_PATH, size=(300, 300),
+    image = StdImageField(upload_to=IMAGE_PATH, size=(300, 300),
                                    blank=True, null=True)
     uuid = UUIDField()
 

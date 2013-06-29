@@ -29,7 +29,7 @@ class JSONResponseMixin(object):
 
 # This Class-based list view just sets which model to use for the subsequent REST calls we will write
 class EventsBase(ListView):
-    context_object_name = "events_list"
+    context_object_name = "object_list"
 
     def get_queryset(self):
         return Event.objects.all()
@@ -39,5 +39,6 @@ class EventsBase(ListView):
 # This is a Read call to the Events collection: "GET api/v1/events" should call this and return list of all events
 class GetEvents(JSONResponseMixin, EventsBase):
     def convert_context_to_json(self, context):
-        context['events_list'] = Event.objects.values('title', 'location')
+        context['object_list'] = Event.objects.values('title', 'location')
+        print context
         return json.dumps(context)
