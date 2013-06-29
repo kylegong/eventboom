@@ -16,6 +16,7 @@ class TestUserProfile(TestCase):
             ('(234) 567-8901', '2345678901'),
             ('234.567.8901', '2345678901'),
             ('2345678901234567890', '2345678901'),
+            ('', ''),
             ('555-5555', None),
         )
         for phone_input, expected in TEST_DATA:
