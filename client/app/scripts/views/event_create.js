@@ -20,11 +20,22 @@ window.Boom.EventCreateView = Backbone.View.extend({
   postEvent: function(e) {
     e.preventDefault();
     var form = $('#event-create-form');
+    var event_date =  new Date(
+                        form.find('.year').val(),
+                        form.find('.month').val(),
+                        form.find('.day').val()
+                      );
     var data = {
-      'title':        form.find('.title').val(),
-      'description':  form.find('.description').val(),
-      'time':         form.find('.time').val(),
-      'location':     form.find('.location').val()
+      'id':             99999,
+      'title':          form.find('.title').val(),
+      'date':           event_date,
+      'location':       form.find('.location').val(),
+      'neighborhood':   form.find('.neighborhood').val(),
+      'description':    form.find('.description').val(),
+      'category':       form.find('.category').val(),
+      'min_attendees':  form.find('.min_attendees').val(),
+      'max_attendees':  form.find('.max_attendees').val(),
+      'tags':           []
     }
     var event = new Boom.EventModel(data);
     window.Boom.Data.push(event.toJSON());
