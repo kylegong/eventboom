@@ -22,14 +22,12 @@ def generate_random_token(token_length=DEFAULT_TOKEN_LENGTH):
 class Event(models.Model):
     IMAGE_PATH = "images/event"
     NEIGHBORHOODS = (
-        "Alameda",
         "Alamo Square",
         "Castro",
         "Cole Valley",
         "Cow Hollow",
+        "Haight/Ashbury",
         "Hayes Valley",
-        "Inner Sunset",
-        "Lower Pac Heights",
         "Marina",
         "Mission",
         "Noe Valley",
