@@ -6,6 +6,7 @@ from django.http import HttpResponseBadRequest
 from django.http import HttpResponseForbidden
 from django.http import HttpResponseNotFound
 from django.http import HttpResponseRedirect
+from django.conf import settings
 
 from forms import EventForm, UserProfileForm, process_event_data
 from models import Event, UserProfile, Tag
@@ -20,6 +21,8 @@ def render_as_json(data_dict, cookie_dict=None):
             response.set_cookie(k, v)
     return response
 
+
+
 def events(request):
     if request.method == "GET":
         return get_events(request)
@@ -27,9 +30,13 @@ def events(request):
     elif request.method == "POST":
         return create_event(request)
 
+
+
 def get_events(request):
     data = [e.as_dict() for e in Event.objects.all()]
     return render_as_json(data)
+
+
 
 def create_event(request):
     event_data = json.loads(request.POST.get('event'))
