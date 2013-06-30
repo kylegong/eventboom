@@ -11,7 +11,8 @@ window.Boom.FiltersView = Backbone.View.extend({
   },
   filter: function() {
     var when      = this.$('#when').val(),
-        category  = this.$('#category').val();
-    this.collection.sortAndFilter(when, category);
+        category  = this.$('#category').val(),
+        neighborhood = this.$('#neighborhood').val();
+    this.collection.sortAndFilter(when, category, neighborhood);
   }
 });

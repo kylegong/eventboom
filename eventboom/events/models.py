@@ -1,5 +1,8 @@
+import base64
+
 # Django
 from django.core import exceptions
+from django.core.urlresolvers import reverse
 from django.db import models
 
 # Third-party
@@ -21,8 +24,6 @@ class Event(models.Model):
     min_attendees = models.IntegerField(blank=True, null=True)
     max_attendees = models.IntegerField(blank=True, null=True)
     creator = models.ForeignKey('UserProfile')
-    image = StdImageField(upload_to=IMAGE_PATH, size=(300, 300),
-                          blank=True, null=True)
 
     FULL_VALUES = (
         'id',
@@ -33,7 +34,7 @@ class Event(models.Model):
         'min_attendees',
         'max_attendees',
         'creator_id',
-        'image',
+        'creator__image',
     )
 
     LIST_VALUES = (
@@ -56,6 +57,10 @@ class Event(models.Model):
     def as_dict(self):
         return {field: getattr(self, field) for field in Event.FULL_VALUES}
 
+    def get_email_update_url(self):
+        token = self.creator.token
+        base_url = reverse('email_update', kwargs={'event_id': self.id})
+        return '%s?t=%s' % (base_url, token)
 
 class UserProfile(models.Model):
     IMAGE_PATH = "images/user_profile"
@@ -67,7 +72,7 @@ class UserProfile(models.Model):
     phone = models.CharField(max_length=10, blank=True, null=True)
     image = StdImageField(upload_to=IMAGE_PATH, size=(300, 300),
                           blank=True, null=True)
-    token = models.CharField(max_length=DEFAULT_CHAR_FIELD_LENGTH)
+    token = models.CharField(max_length=DEFAULT_CHAR_FIELD_LENGTH, null=True, blank=True)
 
     @staticmethod
     def generate_random_token(bitlength=DEFAULT_TOKEN_BITLENGTH):

@@ -3,7 +3,7 @@ $iconWhiteSpritePath: "../images/glyphicons-halflings-white.png";
 
 @import 'sass-bootstrap/lib/bootstrap';
 
-$darkblue: #323c46; 
+$darkblue: #323c46;
 $green: #7ec479;
 $lightgrey: #a6a6a6;
 $orange: #e5755c;
@@ -74,7 +74,7 @@ h1 {
 	width: 265px;
 	text-indent: -9999px;
 	float: left;
-	margin: 0;	
+	margin: 0;
 }
 
 .header-create-event {
@@ -165,6 +165,10 @@ h1 {
 	@include border-radius(4px);
 	margin-left: 5px;
 	color: #8c8c8c;
+}
+
+.neighborhood {
+  background-color: pink !important;
 }
 
 .date-time {
