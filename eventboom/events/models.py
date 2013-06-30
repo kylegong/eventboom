@@ -10,11 +10,11 @@ from Crypto import Random
 from stdimage import StdImageField
 
 DEFAULT_CHAR_FIELD_LENGTH = 255
-DEFAULT_TOKEN_BITLENGTH = 64
+DEFAULT_TOKEN_LENGTH = 48
 
-
-def generate_random_token(bitlength=DEFAULT_TOKEN_BITLENGTH):
-    return base64.urlsafe_b64encode(Random.new().read(bitlength))
+def generate_random_token(token_length=DEFAULT_TOKEN_LENGTH):
+    byte_length = token_length * 6 / 8
+    return base64.urlsafe_b64encode(Random.new().read(byte_length))
 
 
 # Models
@@ -30,8 +30,6 @@ class Event(models.Model):
     min_attendees = models.IntegerField(blank=True, null=True)
     max_attendees = models.IntegerField(blank=True, null=True)
     creator = models.ForeignKey('UserProfile')
-    image = StdImageField(upload_to=IMAGE_PATH, size=(300, 300),
-                          blank=True, null=True)
 
     FULL_VALUES = (
         'id',
@@ -42,7 +40,7 @@ class Event(models.Model):
         'min_attendees',
         'max_attendees',
         'creator_id',
-        'image',
+        'creator__image',
     )
 
     LIST_VALUES = (
@@ -94,12 +92,6 @@ class UserProfile(models.Model):
             raise exceptions.ValidationError
         else:
             return phone_number[:10]
-
-    def save(self, *args, **kwargs):
-        # Only generate token on first write
-        if not self.pk:
-            self.token = UserProfile.generate_random_token()
-        super(UserProfile, self).save(*args, **kwargs)
 
     def clean_fields(self, *args, **kwargs):
         self.phone = UserProfile._validate_phone(self.phone)
