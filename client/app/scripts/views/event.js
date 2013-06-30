@@ -29,7 +29,25 @@ window.Boom.EventView = Backbone.View.extend({
     }
   },
   validateJoin: function() {
-    var form = $('form#event-join-form');
-    return true;
+    var validated_fields = [
+      this.validateField('.name'),
+      this.validateField('.email'),
+      this.validateField('.phone')
+    ];
+    var all_valid = _.indexOf(validated_fields, false) === -1;
+    return all_valid;
+  },
+  validateField: function(field_class) {
+    var valid       = true,
+        form        = $('form#event-join-form'),
+        field_value = form.find(field_class).val();
+
+    if (field_value == '' || field_value == 'null') {
+      valid = false;
+      form.find(field_class).css({'border': "1px solid #c00"})
+    } else {
+      form.find(field_class).css({'border': "1px solid #ccc"})
+    }
+    return valid;
   }
 });
