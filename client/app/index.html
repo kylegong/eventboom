@@ -51,10 +51,6 @@
           <label>Category:</label>
           <select id="category">
             <option value=''>All</option>
-            <option value='food'>food</option>
-            <option value='fun'>fun</option>
-            <option value='sports'>sports</option>
-            <option value='speed dating'>speed dating</option>
 
           <label>When:</label>
           <select id="when">
@@ -69,8 +65,6 @@
           <label>Neighborhood:</label>
           <select id="neighborhood">
             <option value=''>All</option>
-            <option value='mission'>Mission</option>
-            <option value='soma'>SOMA</option>
           </select>
           </div>
 
@@ -83,7 +77,7 @@
         </script>
         <script type="text/template" id="event-short">
           <a href='#event/<%= id %>'>
-          
+
           <ul class="tag-list">
           <% for(var tag in tags) { %>
             <li class="tag"><%= tags[tag] %></li>
@@ -117,8 +111,6 @@
             <% } %>
             </ul>
             </div>
-
-            
             <div class="event-description"><%= description %></div>
           </div>
           <div class="event-join-container row-fluid">
