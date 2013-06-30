@@ -7,8 +7,8 @@ from django.http import HttpResponseForbidden
 from django.http import HttpResponseNotFound
 from django.http import HttpResponseRedirect
 
-from forms import EventForm, UserProfileForm
-from models import Event, UserProfile
+from forms import EventForm, UserProfileForm, process_event_data
+from models import Event, UserProfile, Tag
 
 USER_TOKEN = 'user_token'
 
@@ -46,11 +46,9 @@ def create_event(request):
         user_profile = UserProfileForm(user_profile_data, request.FILES).save()
 
     # Create event
-    event_data['tag'] = event_data['tags'][0]
-    form = EventForm(event_data)
-    import sys
-    sys.stderr.write(str(form.errors))
-    event = form.save()
+    event = process_event_data(event_data)
+    if not event:
+        return HttpResponseBadRequest()
 
     data = {
         'event': event.as_dict(),
@@ -89,16 +87,17 @@ def update_event(request, event_id):
         return HttpResponseBadRequest()
     if not request.COOKIES[USER_TOKEN] == event.creator.token:
         return HttpResponseForbidden()
-    for field, value in event_data:
-        if field in Event.UPDATE_FIELDS:
-            setattr(event, field, value)
     try:
-        event.save()
+        process_event_data(event_data)
     except:
         return HttpResponseBadRequest()
     data = {
         'event': event.as_dict(),
     }
+    return render_as_json(data)
+
+def get_tags(request):
+    data = []
     return render_as_json(data)
 
 def email_update(request, event_id):
