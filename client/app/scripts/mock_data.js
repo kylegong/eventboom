@@ -52,7 +52,7 @@ window.Boom.Data = [
   },
   {
     id: 5,
-    title: 'Dinner at Taco place',
+    title: 'Taco dinner',
     description: 'No way!!!',
     datetime: new Date(2013, 6, 10, 10),
     tags: ['food'],
@@ -71,6 +71,16 @@ window.Boom.Data = [
     neighborhood: 'marina',
     max_attendees: 100,
     image: '/images/6.jpg'
+  },
+  {
+    id: 7,
+    title: 'Surfin USA',
+    description: 'I want to learn how to surf!',
+    datetime: new Date(2013, 6, 4, 10),
+    tags: ['fun', 'sports'],
+    location: 'Pacifica',
+    neighborhood: 'bernal heights',
+    max_attendees: 100
   }
 ]
 

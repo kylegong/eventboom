@@ -1,6 +1,9 @@
 window.Boom = window.Boom || {}
 
 window.Boom.EventModel = Backbone.Model.extend({
+  defaults: {
+    image: '/images/unknown.jpg'
+  },
   initialize: function() {
     if (typeof this.get('datetime') === 'string') {
       this.set('datetime', new Date(this.get('datetime')));
