@@ -10,46 +10,46 @@ $lightgrey: #a6a6a6;
 $orange: #e5755c;
 
 * {
-	box-sizing: border-box !important;
+  box-sizing: border-box !important;
 }
 
 a {
-	text-decoration: none;
-	transition: all 0.1s ease-in-out;
+  text-decoration: none;
+  transition: all 0.1s ease-in-out;
 }
 
 ul {
-	list-style: none;
-	margin: 0;
+  list-style: none;
+  margin: 0;
 }
 
 body {
-	font-family: "Open Sans",sans-serif;
-	-webkit-font-smoothing: antialiased;
-	color: #a6a6a6;
-	box-sizing: border-box;
-	padding-right: 0 !important;
-	padding-left: 0 !important;
+  font-family: "Open Sans",sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: #a6a6a6;
+  box-sizing: border-box;
+  padding-right: 0 !important;
+  padding-left: 0 !important;
 }
 
 h1, h2 {
-	font-weight: 100;
-	color: #585858;
-	line-height: 1.1;
-	margin: 0.1em 0 0.4em;
-	font-size: 26px;
-	a {
-		color: #585858;
-	}
+  font-weight: 100;
+  color: #585858;
+  line-height: 1.1;
+  margin: 0.1em 0 0.4em;
+  font-size: 26px;
+  a {
+    color: #585858;
+  }
 }
 
 h1 {
-	font-size: 34px;
+  font-size: 34px;
 }
 
 .container {
-	max-width: 760px;
-	width: 90%;
+  max-width: 760px;
+  width: 90%;
 }
 
 .hero-unit {
@@ -58,203 +58,208 @@ h1 {
 }
 
 .header {
-	background-color: $darkblue;
-	padding: 1.6em 0;
-	margin-bottom: 2em;
+  background-color: $darkblue;
+  padding: 1.6em 0;
+  margin-bottom: 2em;
 }
 
 .header-wrapper {
-	max-width: 760px;
-	margin: 0 auto;
-	@include clearfix;
-	width: 90%;
+  max-width: 760px;
+  margin: 0 auto;
+  @include clearfix;
+  width: 90%;
 }
 
 .header-logo {
-	background: url('/images/reality-logo.png') top left no-repeat;
-	background-size: 265px 65px;
-	height: 60px;
-	width: 265px;
-	text-indent: -9999px;
-	float: left;
-	margin: 0;
+  background: url('/images/reality-logo.png') top left no-repeat;
+  background-size: 265px 65px;
+  height: 60px;
+  width: 265px;
+  text-indent: -9999px;
+  float: left;
+  margin: 0;
 }
 
 .header-create-event {
-	float: right;
+  float: right;
 }
 
 .button {
-	display: inline-block;
-	background-color: $green;
-	@include border-radius(4px);
-	text-decoration: none;
-	color: #fff;
-	padding: 1em 2.4em;
-	font-weight: 600;
-	&:hover {
-		color: #fff;
-		text-decoration: none;
-		background-color: shade($green, 10%);
-	}
+  display: inline-block;
+  background-color: $green;
+  @include border-radius(4px);
+  text-decoration: none;
+  color: #fff;
+  padding: 1em 2.4em;
+  font-weight: 600;
+  &:hover {
+    color: #fff;
+    text-decoration: none;
+    background-color: shade($green, 10%);
+  }
 }
 
 .button-alt {
-	padding: 0.6em 1em;
-	border: 1px solid #D9D9D9;
-	font-size: 14px;
-	font-weight: 100;
-	text-transform: uppercase;
-	line-height: 1;
-	@include border-radius(4px);
-	color: $lightgrey;
-	background-color: transparent;
-	&:hover {
-		color: darken($lightgrey, 5%);
-		text-decoration: none;
-		background-color: lighten($lightgrey, 32%);
-	}
+  padding: 0.6em 1em;
+  border: 1px solid #D9D9D9;
+  font-size: 14px;
+  font-weight: 100;
+  text-transform: uppercase;
+  line-height: 1;
+  @include border-radius(4px);
+  color: $lightgrey;
+  background-color: transparent;
+  &:hover {
+    color: darken($lightgrey, 5%);
+    text-decoration: none;
+    background-color: lighten($lightgrey, 32%);
+  }
 }
 
 .header-create-event {
-	margin-top: 7px;
-	background: $green url('/images/icon-post-event.png') 86% 42% no-repeat;
-	background-size: 30px 30px;
-	padding-right: 60px;
+  margin-top: 7px;
+  background: $green url('/images/icon-post-event.png') 86% 42% no-repeat;
+  background-size: 30px 30px;
+  padding-right: 60px;
 }
 
 @media screen and (max-width: 500px) {
-	.header {
-		padding-top: 10px;
-	}
-	.header-create-event {
-		float: none;
-		margin-top: 15px;
-		text-align: center;
-		width: 100%;
-	}
+  .header {
+    padding-top: 10px;
+  }
+  .header-create-event {
+    float: none;
+    margin-top: 15px;
+    text-align: center;
+    width: 100%;
+  }
 }
 
 .event-list {
-	ul {
-		li {
-			background: #f7f7f7;
-			padding: 0.6em 1.2em;
-			margin-bottom: 1em;
-			@include border-radius(4px);
-			a {
-				color: #585858;
-				text-decoration: none;
-			}
-		}
-	}
+  ul {
+    li {
+      background: #f7f7f7;
+      padding: 0.6em 1.2em;
+      margin-bottom: 1em;
+      @include border-radius(4px);
+      a {
+        color: #585858;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.event-join-container {
+  background: #eee;
+  padding: 15px 30px;
 }
 
 .tag-list {
-	float: right;
-	margin-top: 0.5em;
-	li {
-		display: inline-block;
-	}
+  float: right;
+  margin-top: 0.5em;
+  li {
+    display: inline-block;
+  }
 }
 
 @media screen and (max-width:600px) {
-	.tag-list {
-		float: none;
-	}
+  .tag-list {
+    float: none;
+  }
 }
 
 .tag {
-	padding: 0.6em 1.2em;
-	border: 1px solid #D9D9D9;
-	font-size: 12px;
-	font-weight: 100;
-	text-transform: uppercase;
-	line-height: 1;
-	@include border-radius(4px);
-	margin-left: 5px;
-	color: #8c8c8c;
-	&:first-child {
-		margin-left: 0;
-	}
+  padding: 0.6em 1.2em;
+  border: 1px solid #D9D9D9;
+  font-size: 12px;
+  font-weight: 100;
+  text-transform: uppercase;
+  line-height: 1;
+  @include border-radius(4px);
+  margin-left: 5px;
+  color: #8c8c8c;
+  &:first-child {
+    margin-left: 0;
+  }
 }
 
 .date-time {
-	color: $lightgrey;
-	margin-top: -8px;
+  color: $lightgrey;
+  margin-top: -8px;
 }
 
 .event-view, .create-view {
-	padding: 1.5em 2em;
-	background-color: #f7f7f7;
-	@include border-radius(4px);
-	margin-bottom: 0;
-	@include clearfix;
+  padding: 1.5em 2em;
+  background-color: #f7f7f7;
+  @include border-radius(4px);
+  margin-bottom: 0;
+  @include clearfix;
 }
 
 @media screen and (max-width: 600px) {
-	.create-view {
-		padding: 10px;
-	}
+  .create-view {
+    padding: 10px;
+  }
 }
 
 .back {
-	margin-bottom: 1.5em;
-	display: inline-block;
+  margin-bottom: 1.5em;
+  display: inline-block;
 }
 
 form, input, textarea {
-	font-family: "Open Sans",sans-serif !important;
+  font-family: "Open Sans",sans-serif !important;
 }
 
 label {}
 
 input {
-	height: 45px !important;
+  height: 45px !important;
 }
 
 input, textarea {
-	border: 2px solid $green !important;
-	padding: 10px 8px !important;
-	box-shadow: none !important;
+  border: 2px solid $green !important;
+  padding: 10px 8px !important;
+  box-shadow: none !important;
 }
 
 textarea {
-	min-height: 200px;
+  min-height: 200px;
 }
 
 .hidden {
-	display: none;
+  display: none;
 }
 
 .full-width {
-	width: 100%;
+  width: 100%;
 }
 
 .post-event {
-	min-width: 180px !important;
-	font-weight: 500;
-	border: none !important;
+  min-width: 180px !important;
+  font-weight: 500;
+  border: none !important;
 }
 
 .create-or-cancel {
-	margin-top: 1em;
-	float: right;
+  margin-top: 1em;
+  float: right;
 }
 
 .cancel {
-	margin-right: 10px;
-	text-decoration: none;
-	color: $lightgrey;
-	&:hover {
-		text-decoration: none;
-		color: darken($lightgrey, 12%);
-	}
+  margin-right: 10px;
+  text-decoration: none;
+  color: $lightgrey;
+  &:hover {
+    text-decoration: none;
+    color: darken($lightgrey, 12%);
+  }
 }
 
 select {
-	padding-left: 12px;
-	font-family: "Open Sans",sans-serif;
+  padding-left: 12px;
+  font-family: "Open Sans",sans-serif;
     -webkit-border-radius:4px;
     -moz-border-radius:4px;
     border-radius:4px;
@@ -272,24 +277,24 @@ select {
 }
 
 .filters {
-	margin-bottom: 0.6em;
-	@include clearfix;
+  margin-bottom: 0.6em;
+  @include clearfix;
 }
 
 .filter {
-	select {
-		width: 100% !important;
-		background: $orange url('/images/icon-down-arrow-orange.png') 92% 50% no-repeat;
-    	background-size: 20px 11px;
-	}
+  select {
+    width: 100% !important;
+    background: $orange url('/images/icon-down-arrow-orange.png') 92% 50% no-repeat;
+      background-size: 20px 11px;
+  }
 }
 
 .date-control {
-	width: 24%;
+  width: 24%;
 }
 
 @media screen and (max-width:600px) {
-	.date-control {
-		width: 49%;
-	}
+  .date-control {
+    width: 49%;
+  }
 }

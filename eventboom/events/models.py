@@ -36,18 +36,15 @@ class Event(models.Model):
                           blank=True, null=True)
 
     # Tag validation disabled for demo
-    tags = models.CharField(max_length=DEFAULT_CHAR_FIELD_LENGTH)
+    tag = models.CharField(max_length=DEFAULT_CHAR_FIELD_LENGTH)
 
     FULL_VALUES = (
         'id',
         'title',
-        'datetime',
         'location',
         'description',
         'min_attendees',
         'max_attendees',
-        'creator_id',
-        'creator__image',
     )
 
     UPDATE_FIELDS = (
@@ -62,7 +59,10 @@ class Event(models.Model):
 
     def as_dict(self):
         d = {field: getattr(self, field) for field in Event.FULL_VALUES}
-        d['tag'] = [self.tag]
+        d['datetime'] = str(self.datetime)
+        d['tags'] = [self.tag]
+        if self.image:
+            d['image'] = self.image.url
         return d
 
     def get_email_update_url(self):
@@ -72,8 +72,6 @@ class Event(models.Model):
 
 
 class UserProfile(models.Model):
-    IMAGE_PATH = "images/user_profile"
-
     display_name = models.CharField(max_length=DEFAULT_CHAR_FIELD_LENGTH)
     email = models.EmailField(blank=True, null=True)
     phone = models.CharField(max_length=10, blank=True, null=True)
@@ -101,7 +99,6 @@ class UserProfile(models.Model):
                 'display_name',
                 'email',
                 'phone',
-                'image',
     )
 
     def as_dict(self):
