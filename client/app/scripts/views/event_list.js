@@ -8,9 +8,13 @@ window.Boom.EventListView = Backbone.View.extend({
   render: function() {
     var self = this;
     this.$el.empty();
-    this.collection.each(function(event) {
-      self.$el.append(new Boom.EventShortView({model: event}).render().el);
-    });
+    if (this.collection.length) {
+      this.collection.each(function(event) {
+        self.$el.append(new Boom.EventShortView({model: event}).render().el);
+      });
+    } else {
+      this.$el.append('<h2>No events yet</h2');
+    }
     return this;
   }
 });

@@ -8,7 +8,10 @@ window.Boom.Data = [
     datetime: new Date(2013, 5, 30),
     tags: ['sports'],
     location: 'Lolinda',
-    neighborhood: 'soma'
+    neighborhood: 'soma',
+    min_attendees: 4,
+    max_attendees: 10,
+    image: '/images/1.png'
   },
   {
     id: 2,
@@ -17,7 +20,10 @@ window.Boom.Data = [
     datetime: new Date(2013, 5, 29),
     tags: ['food', 'fun'],
     location: 'Sushi place',
-    neighborhood: 'soma'
+    neighborhood: 'soma',
+    min_attendees: 4,
+    max_attendees: 10,
+    image: '/images/2.png'
   },
   {
     id: 3,
@@ -26,7 +32,21 @@ window.Boom.Data = [
     datetime: new Date(2013, 6, 3),
     tags: ['speed dating'],
     location: 'Ice cream place',
-    neighborhood: 'mission'
+    neighborhood: 'mission',
+    min_attendees: 4,
+    max_attendees: 30,
+    image: '/images/3.png'
+  },
+  {
+    id: 4,
+    title: 'Movie night',
+    description: 'No way!!!',
+    datetime: new Date(2013, 6, 5),
+    tags: ['fun'],
+    location: 'Kyle\'s place',
+    neighborhood: 'mission',
+    max_attendees: 10,
+    image: '/images/4.png'
   }
 ]
 
