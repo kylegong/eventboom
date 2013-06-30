@@ -83,6 +83,7 @@
         </script>
         <script type="text/template" id="event-short">
           <a href='#event/<%= id %>'>
+          <img src="<%= image %>" />
           <ul class="tag-list">
           <% for(var tag in tags) { %>
             <li class="tag"><%= tags[tag] %></li>
@@ -106,6 +107,7 @@
               <li class="tag neighborhood"><%= neighborhood %></li>
             <% } %>
             </ul>
+            <img src="<%= image %>" />
             <h1><%= title %></h1>
             <p class="date-time"><%= formattedDate %> at <%= location %></p>
             <div class="event-description"><%= description %></div>

@@ -35,9 +35,6 @@ class Event(models.Model):
     image = StdImageField(upload_to=IMAGE_PATH, size=(300, 300),
                           blank=True, null=True)
 
-    # Tag validation disabled for demo
-    tag = models.CharField(max_length=DEFAULT_CHAR_FIELD_LENGTH)
-
     FULL_VALUES = (
         'id',
         'title',
@@ -51,6 +48,7 @@ class Event(models.Model):
         'title',
         'datetime',
         'location',
+        'neighborhood',
         'description',
         'min_attendees',
         'max_attendees',
@@ -60,7 +58,7 @@ class Event(models.Model):
     def as_dict(self):
         d = {field: getattr(self, field) for field in Event.FULL_VALUES}
         d['datetime'] = str(self.datetime)
-        d['tags'] = [self.tag]
+        d['tags'] = [tag.tag_name for tag in self.tags.all()]
         if self.image:
             d['image'] = self.image.url
         return d
@@ -69,6 +67,27 @@ class Event(models.Model):
         token = self.creator.token
         base_url = reverse('email_update', kwargs={'event_id': self.id})
         return '%s?t=%s' % (base_url, token)
+
+
+class Tag(models.Model):
+    BREAKING_BREAD = 'breaking bread'
+    FELLOWSHIP = 'fellowship'
+    GAMES = 'games'
+    MUSIC = 'music'
+    PRAYER = 'prayer'
+    SPORTS = 'sports'
+    OTHER = 'other'
+    TAG_CHOICES = (
+        (BREAKING_BREAD, BREAKING_BREAD),
+        (FELLOWSHIP, FELLOWSHIP),
+        (GAMES, GAMES),
+        (MUSIC, MUSIC),
+        (SPORTS, SPORTS),
+        (OTHER, OTHER),
+    )
+    tag_name = models.CharField(max_length=DEFAULT_CHAR_FIELD_LENGTH,
+                                choices=TAG_CHOICES)
+    event = models.ForeignKey('Event', related_name='tags')
 
 
 class UserProfile(models.Model):

@@ -10,6 +10,7 @@ window.Boom.EventModel = Backbone.Model.extend({
 });
 
 window.Boom.EventCollection = Backbone.Collection.extend({
+  url: 'http://3wi6.localtunnel.com/api/v1/events/',
   model: Boom.EventModel,
   comparator: function(event) {
     return event.get('datetime');

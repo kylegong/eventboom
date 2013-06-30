@@ -49,7 +49,7 @@ class TestViews(TestCase):
                 'title': 'My event',
                 'description': "Stuff",
                 'datetime': "2013-05-01",
-                'tags': ['sports'],
+                'tags': ['sports', 'breaking_bread'],
                 'location': 'Lolinda',
                 'neighborhood': 'soma'
             }),
@@ -62,7 +62,9 @@ class TestViews(TestCase):
         c = Client()
         url = reverse('events')
         response = c.post(url, data=TEST_DATA)
+        self.assertEquals(response.status_code, 200)
         events = models.Event.objects.all()
         self.assertEquals(len(events), 1)
         user_profiles = models.UserProfile.objects.all()
         self.assertEquals(len(user_profiles), 1)
+        self.assertEquals(len(events[0].tags.all()), 2)
