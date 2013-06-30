@@ -38,7 +38,7 @@
         <script type="text/template" id="filters">
           <label>When:</label>
           <select id="when">
-            <option value=''>All</option>
+            <option value=''>Anytime</option>
             <option value='0'>Today</option>
             <option value='3'>Next 3 Days</option>
             <option value='7'>Next 7 Days</option>
@@ -51,6 +51,13 @@
             <option value='fun'>fun</option>
             <option value='sports'>sports</option>
             <option value='speed dating'>speed dating</option>
+          </select>
+
+          <label>Neighborhood:</label>
+          <select id="neighborhood">
+            <option value=''>All</option>
+            <option value='mission'>Mission</option>
+            <option value='soma'>SOMA</option>
           </select>
         </script>
         <script type="text/template" id="index">
@@ -79,7 +86,7 @@
             <h1><%= title %></h1>
             <p class="date-time"><%= date %></p>
             <div class="event-description"><%= description %></div>
-            
+
           </div>
         </script>
         <script type="text/template" id="event-create">
