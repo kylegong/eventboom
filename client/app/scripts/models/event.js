@@ -3,21 +3,26 @@ window.Boom = window.Boom || {}
 window.Boom.EventModel = Backbone.Model.extend({
   initialize: function() {
     if (typeof this.get('datetime') === 'string') {
-      this.set('datetime', new Date(event.get('datetime')));
+      this.set('datetime', new Date(this.get('datetime')));
     }
     this.set('formattedDate', moment(this.get('datetime')).format('ddd - MMM Do HH:mm A'));
   }
 });
 
 window.Boom.EventCollection = Backbone.Collection.extend({
-  url: 'http://3wi6.localtunnel.com/api/v1/events/',
+  initialize: function() {
+    if (!Boom.useMock) {
+      this.url = Boom.url + 'api/v1/events/'
+    }
+  },
   model: Boom.EventModel,
   comparator: function(event) {
     return event.get('datetime');
   },
   sortAndFilter: function(when, category, neighborhood) {
     var filtered,
-        self = this;
+        self = this,
+        toRemove = [];
     this.data = this.data || this.toJSON();
 
     when = when && parseInt(when, 10);
@@ -36,7 +41,25 @@ window.Boom.EventCollection = Backbone.Collection.extend({
       return result;
     });
 
-    this.reset(filtered);
+    _.each(this.data, function(event) {
+      toRemove.push(event.id);
+    });
+
+    _.each(filtered, function(event) {
+      toRemove = _.without(toRemove, event.id);
+      if (!self.get(event.id)) {
+        console.log('adding ' + event.id)
+        self.add(event);
+      }
+    });
+
+    _.each(toRemove, function(id) {
+      var model = self.get(id);
+      if (model) {
+        console.log('removing ' + id)
+        self.remove(model);
+      }
+    });
   },
   isInTheNextXDays: function(days, event) {
     var today = new Date(),
