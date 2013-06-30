@@ -150,6 +150,7 @@ h1 {
       padding: 0.6em 1.2em;
       margin-bottom: 1em;
       @include border-radius(4px);
+      @include clearfix;
       a {
         color: #585858;
         text-decoration: none;
@@ -174,6 +175,19 @@ h1 {
 @media screen and (max-width:600px) {
   .tag-list {
     float: none;
+  }
+  .event-list {
+  	.tag-list {
+  		float: none;
+  	}
+  	h2 {
+  		clear: both;
+  		margin-top: 5px;
+  	}
+  	img {
+  		float: right;
+  		@include clearfix;
+  	}
   }
   .event-view {
   	.tag-list {
@@ -367,5 +381,8 @@ select {
 	border-color: $orange !important;
 }
 
+.float-left {
+	float: left;
+}
 
 
