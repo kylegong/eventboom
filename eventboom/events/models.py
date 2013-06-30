@@ -34,6 +34,8 @@ class Event(models.Model):
     max_attendees = models.IntegerField(blank=True, null=True)
     image = StdImageField(upload_to=IMAGE_PATH, size=(1024, 1024),
                           blank=True, null=True)
+    creator_name = models.CharField(max_length=DEFAULT_CHAR_FIELD_LENGTH,
+                                    blank=True, null=True)
 
     FULL_VALUES = (
         'id',
@@ -54,6 +56,7 @@ class Event(models.Model):
         'min_attendees',
         'max_attendees',
         'image',
+        'creator_name',
     )
 
     def as_dict(self, host=''):

@@ -51,7 +51,8 @@ class TestViews(TestCase):
                 'datetime': "2013-05-01",
                 'tags': ['sports', 'breaking_bread'],
                 'location': 'Lolinda',
-                'neighborhood': 'soma'
+                'neighborhood': 'soma',
+                'creator_name': 'Charles Bartowski',
             }),
             'user_profile': json.dumps({
                 'display_name': 'KG',
