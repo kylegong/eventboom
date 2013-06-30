@@ -75,114 +75,120 @@
         </script>
         <script type="text/template" id="event-create">
           <a href="#" class="button-alt back">← Back to list</a>
-          <h2>Create an event</h2>
-          <form id="event-create-form">
-            <label>Title:</label>
-            <input type="text" name="title" class="title">
+          <div class="create-view">
+            <h1>Create an event</h1>
+            <form id="event-create-form">
+              <label class="hidden">Title:</label>
+              <input type="text" name="title" class="title full-width" placeholder="Title">
 
-            <label>Time:</label>
+              <label>Time:</label>
 
-            <select name="month" class="month">
-              <option value="1">January</option>
-              <option value="2">February</option>
-              <option value="3">March</option>
-              <option value="4">April</option>
-              <option value="5">May</option>
-              <option value="6">June</option>
-              <option value="7">July</option>
-              <option value="8">August</option>
-              <option value="9">September</option>
-              <option value="10">October</option>
-              <option value="11">September</option>
-              <option value="12">December</option>
-            </select>
+              <select name="month" class="month">
+                <option value="1">January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">September</option>
+                <option value="10">October</option>
+                <option value="11">September</option>
+                <option value="12">December</option>
+              </select>
 
-            <select name="day" class="day">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
-            </select>
+              <select name="day" class="day">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
 
-            <select name="year" class="year">
-              <option value="2013">2013</option>
-              <option value="2014">2014</option>
-            </select>
+              <select name="year" class="year">
+                <option value="2013">2013</option>
+                <option value="2014">2014</option>
+              </select>
 
-            <select name="hour" class="hour">
-              <option value="1">1 AM</option>
-              <option value="2">2 AM</option>
-              <option value="3">3 AM</option>
-              <option value="4">4 AM</option>
-              <option value="5">5 AM</option>
-              <option value="6">6 AM</option>
-              <option value="7">7 AM</option>
-              <option value="8">8 AM</option>
-              <option value="9">9 AM</option>
-              <option value="10">10 AM</option>
-              <option value="11">11 AM</option>
-              <option value="12" selected>12 PM</option>
-              <option value="13">1 PM</option>
-              <option value="14">2 PM</option>
-              <option value="15">3 PM</option>
-              <option value="16">4 PM</option>
-              <option value="17">5 PM</option>
-              <option value="18">6 PM</option>
-              <option value="19">7 PM</option>
-              <option value="20">8 PM</option>
-              <option value="21">9 PM</option>
-              <option value="22">10 PM</option>
-              <option value="23">11 PM</option>
-              <option value="0">12 AM</option>
-            </select>
+              <select name="hour" class="hour">
+                <option value="1">1 AM</option>
+                <option value="2">2 AM</option>
+                <option value="3">3 AM</option>
+                <option value="4">4 AM</option>
+                <option value="5">5 AM</option>
+                <option value="6">6 AM</option>
+                <option value="7">7 AM</option>
+                <option value="8">8 AM</option>
+                <option value="9">9 AM</option>
+                <option value="10">10 AM</option>
+                <option value="11">11 AM</option>
+                <option value="12" selected>12 PM</option>
+                <option value="13">1 PM</option>
+                <option value="14">2 PM</option>
+                <option value="15">3 PM</option>
+                <option value="16">4 PM</option>
+                <option value="17">5 PM</option>
+                <option value="18">6 PM</option>
+                <option value="19">7 PM</option>
+                <option value="20">8 PM</option>
+                <option value="21">9 PM</option>
+                <option value="22">10 PM</option>
+                <option value="23">11 PM</option>
+                <option value="0">12 AM</option>
+              </select>
 
-            <label>Location:</label>
-            <input type="text" name="location" class="location" placeholder="Optional">
+              <label class="hidden">Location:</label>
+              <input type="text" name="location" class="location" placeholder="Location (optional)">
 
-            <select name="neighborhood" class="neighborhood">
-              <option value="null" selected>Neighborhood</option>
-              <option value="Alemeda">Alemeda</option>
-              <option value="Alamo Square">Alamo Square</option>
-              <option value="Castro">Castro</option>
-              <option value="Cole Valley">Cole Valley</option>
-              <option value="Hayes Valley">Hayes Valley</option>
-              <option value="Inner Sunset">Inner Sunset</option>
-              <option value="Marina">Marina</option>
-              <option value="Mission">Mission</option>
-              <option value="Noe Valley">Noe Valley</option>
-              <option value="NOPA">NOPA</option>
-              <option value="North Beach">North Beach</option>
-              <option value="Pac Heights">Pac Heights</option>
-              <option value="SOMA">SOMA</option>
-            </select>
+              <select name="neighborhood" class="neighborhood">
+                <option value="null" selected>Neighborhood</option>
+                <option value="Alemeda">Alemeda</option>
+                <option value="Alamo Square">Alamo Square</option>
+                <option value="Castro">Castro</option>
+                <option value="Cole Valley">Cole Valley</option>
+                <option value="Hayes Valley">Hayes Valley</option>
+                <option value="Inner Sunset">Inner Sunset</option>
+                <option value="Marina">Marina</option>
+                <option value="Mission">Mission</option>
+                <option value="Noe Valley">Noe Valley</option>
+                <option value="NOPA">NOPA</option>
+                <option value="North Beach">North Beach</option>
+                <option value="Pac Heights">Pac Heights</option>
+                <option value="SOMA">SOMA</option>
+              </select>
 
-            <label>Description:</label>
-            <textarea name="description" class="description"></textarea>
+              <label class="hidden">Description:</label>
+              <textarea name="description" class="description full-width" placeholder="Description"></textarea>
 
-            <br/>
+              <br/>
 
-            <select name="category" class="category">
-              <option value="null" selected>Event Category</option>
-              <option value="lunch">Lunch</option>
-              <option value="sports">Sports</option>
-              <option value="service">Service</option>
-            </select>
+              <select name="category" class="category">
+                <option value="null" selected>Event Category</option>
+                <option value="lunch">Lunch</option>
+                <option value="sports">Sports</option>
+                <option value="service">Service</option>
+              </select>
 
-            <input type="text" name="min_attendees" class="min_attendees" placeholder="Min people (optional)" />
-            <input type="text" name="max_attendees" class="max_attendees" placeholder="Max people (optional)" />
+              <input type="text" name="min_attendees" class="min_attendees" placeholder="Min people (optional)" />
+              <input type="text" name="max_attendees" class="max_attendees" placeholder="Max people (optional)" />
 
-            <br/>
+              <br/>
 
-            <input type="submit" value="Create" class="post-event"/> Or <a href="#">Cancel</a>
-          </form>
+              <div class="create-or-cancel">
+              <a href="#" class="cancel">Cancel</a>
+              <input type="button" value="Create Event" class="post-event button"/>
+              </div>
+            </form>
+
+          </div>
         </script>
         <!-- endtemplates -->
 
