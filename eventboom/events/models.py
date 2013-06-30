@@ -10,6 +10,12 @@ from Crypto import Random
 from stdimage import StdImageField
 
 DEFAULT_CHAR_FIELD_LENGTH = 255
+DEFAULT_TOKEN_LENGTH = 48
+
+def generate_random_token(token_length=DEFAULT_TOKEN_LENGTH):
+    byte_length = token_length * 6 / 8
+    return base64.urlsafe_b64encode(Random.new().read(byte_length))
+
 
 # Models
 class Event(models.Model):
@@ -62,21 +68,18 @@ class Event(models.Model):
         base_url = reverse('email_update', kwargs={'event_id': self.id})
         return '%s?t=%s' % (base_url, token)
 
+
 class UserProfile(models.Model):
     IMAGE_PATH = "images/user_profile"
-    DEFAULT_TOKEN_BITLENGTH = 64
 
     display_name = models.CharField(max_length=DEFAULT_CHAR_FIELD_LENGTH)
     email = models.EmailField(blank=True, null=True)
-    # Store digits only here
     phone = models.CharField(max_length=10, blank=True, null=True)
     image = StdImageField(upload_to=IMAGE_PATH, size=(300, 300),
                           blank=True, null=True)
-    token = models.CharField(max_length=DEFAULT_CHAR_FIELD_LENGTH, null=True, blank=True)
+    token = models.CharField(max_length=DEFAULT_CHAR_FIELD_LENGTH,
+                             default=generate_random_token)
 
-    @staticmethod
-    def generate_random_token(bitlength=DEFAULT_TOKEN_BITLENGTH):
-        return base64.urlsafe_b64encode(Random.new().read(bitlength))
 
     @staticmethod
     def _validate_phone(phone_number):
@@ -89,12 +92,6 @@ class UserProfile(models.Model):
             raise exceptions.ValidationError
         else:
             return phone_number[:10]
-
-    def save(self, *args, **kwargs):
-        # Only generate token on first write
-        if not self.pk:
-            self.token = UserProfile.generate_random_token()
-        super(UserProfile, self).save(*args, **kwargs)
 
     def clean_fields(self, *args, **kwargs):
         self.phone = UserProfile._validate_phone(self.phone)

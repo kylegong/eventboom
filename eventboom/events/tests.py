@@ -4,6 +4,13 @@ from django.test import TestCase
 from eventboom.events import models
 
 class TestUserProfile(TestCase):
+    def test_token(self):
+        user_profile1 = models.UserProfile(display_name="Test User 1")
+        self.assertEquals(len(user_profile1.token), 48)
+        user_profile2 = models.UserProfile(display_name="Test User 2")
+        self.assertEquals(len(user_profile2.token), 48)
+        self.assertNotEqual(user_profile1.token, user_profile2.token)
+
     def test_phone_validation(self):
         """
         Tests that phone numbers are properly saved to the db.
