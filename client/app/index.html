@@ -36,14 +36,18 @@
 
         <!-- Underscore templates -->
         <script type="text/template" id="filters">
-          <label>When:</label>
-          <select id="when">
-            <option value=''>All</option>
-            <option value='0'>Today</option>
-            <option value='3'>Next 3 Days</option>
-            <option value='7'>Next 7 Days</option>
-          </select>
+          <div class="filters">
+          <div class="span3 filter">
+            <label>When:</label>
+                <select id="when">
+                  <option value=''>All</option>
+                  <option value='0'>Today</option>
+                  <option value='3'>Next 3 Days</option>
+                  <option value='7'>Next 7 Days</option>
+                </select>
+          </div>
 
+          <div class="span3 filter">
           <label>Category:</label>
           <select id="category">
             <option value=''>All</option>
@@ -52,9 +56,23 @@
             <option value='sports'>sports</option>
             <option value='speed dating'>speed dating</option>
           </select>
+          </div>
+
+          <div class="span3 filter">
+          <label>Category:</label>
+          <select id="category">
+            <option value=''>All</option>
+            <option value='food'>food</option>
+            <option value='fun'>fun</option>
+            <option value='sports'>sports</option>
+            <option value='speed dating'>speed dating</option>
+          </select>
+          </div>
+
+          </div>
         </script>
         <script type="text/template" id="index">
-          <div class="filters"></div>
+          <div class="filters row"></div>
           <div class="event-list"></div>
         </script>
         <script type="text/template" id="event-short">

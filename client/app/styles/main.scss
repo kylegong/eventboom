@@ -6,6 +6,7 @@ $iconWhiteSpritePath: "../images/glyphicons-halflings-white.png";
 $darkblue: #323c46; 
 $green: #7ec479;
 $lightgrey: #a6a6a6;
+$orange: #e5755c;
 
 * {
 	box-sizing: border-box !important;
@@ -233,3 +234,34 @@ textarea {
 	}
 }
 
+select {
+	padding-left: 12px;
+	font-family: "Open Sans",sans-serif;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    background: $green url('/images/icon-down-arrow.png') 92% 50% no-repeat;
+    background-size: 20px 11px;
+    color:#fff;
+    border:none;
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+    height: 45px;
+}
+
+.filters {
+	margin-bottom: 0.6em;
+	@include clearfix;
+}
+
+.filter {
+	select {
+		width: 100% !important;
+		background: $orange url('/images/icon-down-arrow-orange.png') 92% 50% no-repeat;
+    	background-size: 20px 11px;
+	}
+}
