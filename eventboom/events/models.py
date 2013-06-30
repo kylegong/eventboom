@@ -31,6 +31,23 @@ class Event(models.Model):
     max_attendees = models.IntegerField(blank=True, null=True)
     creator = models.ForeignKey('UserProfile')
 
+    FOOD = 'Food'
+    GAMES = 'Games'
+    MUSIC = 'Music'
+    OTHER = 'Other'
+    SOCIAL = 'Social'
+    SPORTS = 'Sports'
+    TAG_CHOICES = (
+        (FOOD, FOOD),
+        (GAMES, GAMES),
+        (MUSIC, MUSIC),
+        (OTHER, OTHER),
+        (SOCIAL, SOCIAL),
+        (SPORTS, SPORTS),
+    )
+    tag = models.CharField(max_length=DEFAULT_CHAR_FIELD_LENGTH,
+                           choices=TAG_CHOICES)
+
     FULL_VALUES = (
         'id',
         'title',
@@ -41,13 +58,6 @@ class Event(models.Model):
         'max_attendees',
         'creator_id',
         'creator__image',
-    )
-
-    LIST_VALUES = (
-        'id',
-        'title',
-        'datetime',
-        'location',
     )
 
     UPDATE_FIELDS = (
@@ -61,7 +71,9 @@ class Event(models.Model):
     )
 
     def as_dict(self):
-        return {field: getattr(self, field) for field in Event.FULL_VALUES}
+        d = {field: getattr(self, field) for field in Event.FULL_VALUES}
+        d['tag'] = [self.tag]
+        return d
 
     def get_email_update_url(self):
         token = self.creator.token
@@ -79,7 +91,6 @@ class UserProfile(models.Model):
                           blank=True, null=True)
     token = models.CharField(max_length=DEFAULT_CHAR_FIELD_LENGTH,
                              default=generate_random_token)
-
 
     @staticmethod
     def _validate_phone(phone_number):
