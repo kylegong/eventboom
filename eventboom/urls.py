@@ -6,11 +6,7 @@ admin.autodiscover()
 from events import views
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'ihasinterests.views.home', name='home'),
-    # url(r'^ihasinterests/', include('ihasinterests.foo.urls')),
-
-    url(r'^api/v1/events/(?P<event_id>\d+)/$', views.get_event, name='get_event'),
+    url(r'^api/v1/events/(?P<event_id>\d+)/$', views.event, name='event'),
     url(r'^api/v1/events/$', views.events, name='events'),
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

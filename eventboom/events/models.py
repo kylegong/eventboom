@@ -3,7 +3,7 @@ from django.core import exceptions
 from django.db import models
 
 # Third-party
-from django_extensions.db.fields import UUIDField
+from Crypto import Random
 from stdimage import StdImageField
 
 DEFAULT_CHAR_FIELD_LENGTH = 255
@@ -22,7 +22,39 @@ class Event(models.Model):
     max_attendees = models.IntegerField(blank=True, null=True)
     creator = models.ForeignKey('UserProfile')
     image = StdImageField(upload_to=IMAGE_PATH, size=(300, 300),
-                                   blank=True, null=True)
+                          blank=True, null=True)
+
+    FULL_VALUES = (
+        'id',
+        'title',
+        'datetime',
+        'location',
+        'description',
+        'min_attendees',
+        'max_attendees',
+        'creator_id',
+        'image',
+    )
+
+    LIST_VALUES = (
+        'id',
+        'title',
+        'datetime',
+        'location',
+    )
+
+    UPDATE_FIELDS = (
+        'title',
+        'datetime',
+        'location',
+        'description',
+        'min_attendees',
+        'max_attendees',
+        'image',
+    )
+
+    def as_dict(self):
+        return {field: getattr(self, field) for field in Event.FULL_VALUES}
 
 
 class UserProfile(models.Model):
@@ -34,11 +66,15 @@ class UserProfile(models.Model):
     # Store digits only here
     phone = models.CharField(max_length=10, blank=True, null=True)
     image = StdImageField(upload_to=IMAGE_PATH, size=(300, 300),
-                                   blank=True, null=True)
-    uuid = UUIDField()
+                          blank=True, null=True)
+    token = models.CharField(max_length=DEFAULT_CHAR_FIELD_LENGTH)
 
     @staticmethod
-    def validate_phone(phone_number):
+    def generate_random_token(bitlength=DEFAULT_TOKEN_BITLENGTH):
+        return base64.urlsafe_b64encode(Random.new().read(bitlength))
+
+    @staticmethod
+    def _validate_phone(phone_number):
         if not phone_number:
             return ''
         phone_number = ''.join([c for c in phone_number if c in '1234567890'])
@@ -49,7 +85,25 @@ class UserProfile(models.Model):
         else:
             return phone_number[:10]
 
+    def save(self, *args, **kwargs):
+        # Only generate token on first write
+        if not self.pk:
+            self.token = UserProfile.generate_random_token()
+        super(UserProfile, self).save(*args, **kwargs)
+
     def clean_fields(self, *args, **kwargs):
-        self.phone = UserProfile.validate_phone(self.phone)
+        self.phone = UserProfile._validate_phone(self.phone)
         super(UserProfile, self).clean_fields(*args, **kwargs)
+
+    FULL_VALUES = (
+                'id',
+                'display_name',
+                'email',
+                'phone',
+                'image',
+    )
+
+    def as_dict(self):
+        return {field: getattr(self, field)
+            for field in UserProfile.FULL_VALUES}
 

@@ -10,7 +10,8 @@ window.Boom.FiltersView = Backbone.View.extend({
     'change select': 'filter'
   },
   filter: function() {
-    var when = this.$('#when').val();
-    this.collection.sortAndFilter(when);
+    var when      = this.$('#when').val(),
+        category  = this.$('#category').val();
+    this.collection.sortAndFilter(when, category);
   }
 });
