@@ -2,14 +2,17 @@ window.Boom = window.Boom || {}
 
 window.Boom.EventModel = Backbone.Model.extend({
   initialize: function() {
-    this.set('formattedDate', moment(this.get('date')).format('ddd - MMM Do HH:mm A'));
+    if (typeof this.get('datetime') === 'string') {
+      this.set('datetime', new Date(event.get('datetime')));
+    }
+    this.set('formattedDate', moment(this.get('datetime')).format('ddd - MMM Do HH:mm A'));
   }
 });
 
 window.Boom.EventCollection = Backbone.Collection.extend({
   model: Boom.EventModel,
   comparator: function(event) {
-    return event.get('date');
+    return event.get('datetime');
   },
   sortAndFilter: function(when, category, neighborhood) {
     var filtered,
@@ -38,6 +41,6 @@ window.Boom.EventCollection = Backbone.Collection.extend({
     var today = new Date(),
         limit = new Date();
     limit.setDate(today.getDate() + days);
-    return event.date <= limit;
+    return event.datetime <= limit;
   }
 });
