@@ -8,6 +8,9 @@ from events import views
 urlpatterns = patterns('',
     url(r'^api/v1/events/(?P<event_id>\d+)/$', views.event, name='event'),
     url(r'^api/v1/events/$', views.events, name='events'),
+    url(r'^api/v1/neighborhoods/$', views.get_neighborhoods,
+        name='get_neighborhoods'),
+    url(r'^api/v1/tags/$', views.get_tags, name='get_tags'),
 
     url(r'^email/events/(?P<event_id>\d+)/$', views.email_update,
         name='email_update'),

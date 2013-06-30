@@ -103,8 +103,12 @@ def update_event(request, event_id):
     }
     return render_as_json(data)
 
+def get_neighborhoods(request):
+    data = Event.NEIGHBORHOODS
+    return render_as_json(data)
+
 def get_tags(request):
-    data = []
+    data = Tag.TAGS
     return render_as_json(data)
 
 def email_update(request, event_id):
