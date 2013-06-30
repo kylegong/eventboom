@@ -7,6 +7,10 @@ $darkblue: #323c46;
 $green: #7ec479;
 $lightgrey: #a6a6a6;
 
+* {
+	box-sizing: border-box !important;
+}
+
 a {
 	text-decoration: none;
 	transition: all 0.1s ease-in-out;
@@ -21,6 +25,7 @@ body {
 	font-family: "Open Sans",sans-serif;
 	-webkit-font-smoothing: antialiased;
 	color: #a6a6a6;
+	box-sizing: border-box;
 }
 
 h1, h2 {
@@ -91,7 +96,7 @@ h1 {
 }
 
 .button-alt {
-	padding: 0.4em 1em;
+	padding: 0.6em 1em;
 	border: 1px solid #D9D9D9;
 	font-size: 14px;
 	font-weight: 100;
@@ -114,10 +119,22 @@ h1 {
 	padding-right: 60px;
 }
 
+@media screen and (max-width: 500px) {
+	.header {
+		padding-top: 10px;
+	}
+	.header-create-event {
+		float: none;
+		margin-top: 15px;
+		text-align: center;
+		width: 100%;
+	}
+}
+
 .event-list {
 	ul {
 		li {
-			background: #F2F2F2;
+			background: #f7f7f7;
 			padding: 0.6em 1.2em;
 			margin-bottom: 1em;
 			@include border-radius(4px);
@@ -154,17 +171,65 @@ h1 {
 	margin-top: -8px;
 }
 
-.event-view {
+.event-view, .create-view {
 	padding: 1.5em 2em;
 	background-color: #f7f7f7;
-	margin-top: 2em;
 	@include border-radius(4px);
 	margin-bottom: 0;
+	@include clearfix;
 }
 
-.event-description {
-	margin-top: 2em;
+.back {
+	margin-bottom: 1.5em;
+	display: inline-block;
 }
 
+form, input, textarea {
+	font-family: "Open Sans",sans-serif !important;
+}
 
+label {}
+
+input {
+	height: 45px !important;
+}
+
+input, textarea {
+	border: 2px solid $green !important;
+	padding: 10px 8px !important;
+	box-shadow: none !important;
+}
+
+textarea {
+	min-height: 200px;
+}
+
+.hidden {
+	display: none;
+}
+
+.full-width {
+	width: 100%;
+}
+
+.post-event {
+	min-width: 180px !important;
+	font-weight: 500;
+	border: none !important;
+}
+
+.create-or-cancel {
+	margin-top: 1em;
+	float: right;
+}
+
+.cancel {
+	margin-right: 10px;
+	text-decoration: none;
+	color: $lightgrey;
+	&:hover {
+		text-decoration: none;
+		color: darken($lightgrey, 12%);
+	}
+}
 
