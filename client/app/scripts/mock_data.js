@@ -85,7 +85,8 @@ window.Boom.Data = [
     max_attendees: 100
   }
 ]
-
+window.Boom.Data.neighborhoods = ["Alamo Square", "Castro", "Cole Valley", "Cow Hollow", "Haight/Ashbury", "Hayes Valley", "Marina", "Mission", "Noe Valley", "NOPA", "North Beach", "Pac Heights", "Potrero Hill", "Richmond", "SOMA", "Sunset", "Tenderloin", "Western Addition"];
+window.Boom.Data.tags = ["Food", "Fun"];
 window.Boom.Data.get = function(id) {
   return _.find(window.Boom.Data, function(event){
     return event.id === id;

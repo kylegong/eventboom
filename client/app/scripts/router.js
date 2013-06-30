@@ -52,6 +52,7 @@ window.Boom.Router = Backbone.Router.extend({
     });
     view.$el.fadeOut(300, function() {
       view.render();
+      $('body').scrollTop();
       view.$el.fadeIn();
     });
   }
