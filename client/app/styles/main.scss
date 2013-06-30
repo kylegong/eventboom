@@ -165,6 +165,7 @@ h1 {
       background: #f7f7f7;
       padding: 0.6em 1.2em;
       margin-bottom: 1em;
+      border: 1px solid #e5e5e5;
       @include border-radius(4px);
       @include clearfix;
       a {
