@@ -208,6 +208,10 @@ h1 {
   display: inline-block;
 }
 
+form {
+	margin: 0;
+}
+
 form, input, textarea {
   font-family: "Open Sans",sans-serif !important;
 }
@@ -226,6 +230,11 @@ input, textarea {
 
 textarea {
   min-height: 200px;
+}
+
+input[type="button"] {
+	border: none !important;
+	width: 160px;
 }
 
 .hidden {
@@ -298,3 +307,40 @@ select {
     width: 49%;
   }
 }
+
+.event-join-container {
+	@include clearfix;
+}
+
+.event-join-form {
+	float: right;
+	input {
+		margin-bottom: 0;
+	}
+	input[type="submit"] {
+		border: none !important;
+		width: 50px;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.event-join-form {
+		input {
+			margin-bottom: 8px;
+		}
+	}
+}
+
+.success-message, .join-count {
+	display: inline-block;
+	margin-right: 8px;
+}
+
+@media screen and (max-width: 768px) {
+	.success-message {
+		display: none;
+	}
+}
+
+
+
