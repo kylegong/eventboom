@@ -7,8 +7,15 @@ from django.http import HttpResponseNotFound
 
 from models import Event, UserProfile
 
-def render_as_json(data_dict):
-    return HttpResponse(json.dumps(data_dict), content_type='application/json')
+USER_TOKEN = 'user_token'
+
+def render_as_json(data_dict, cookie_dict=None):
+    response = HttpResponse(json.dumps(data_dict),
+                            content_type='application/json')
+    if cookie_dict:
+        for k, v in cookie_dict.items():
+            response.set_cookie(k, v)
+    return response
 
 def events(request):
     if request.method == "GET":
@@ -34,7 +41,10 @@ def create_event(request):
         'event': event,
         'user_profile': user_profile,
     }
-    return render_as_json(data)
+    cookie_dict = {
+        USER_TOKEN: user_profile.token
+    }
+    return render_as_json(data, cookie_dict)
 
 def event(request, event_id):
     if request.method == "GET":
@@ -53,7 +63,6 @@ def get_event(request, event_id):
 def update_event(request, event_id):
     try:
         event_data = json.loads(request.POST.get('event'))
-        user_profile_data = json.loads(request.POST.get('user_profile'))
     except ValueError:
         return HttpResponseBadRequest()
     try:
@@ -61,9 +70,9 @@ def update_event(request, event_id):
     except Event.DoesNotExist:
         return HttpResponseNotFound()
     creator = event.creator
-    if not 'token' in user_profile_data:
+    if not USER_TOKEN in request.COOKIES:
         return HttpResponseBadRequest()
-    if not user_profile_data['token'] == event.creator.uuid:
+    if not request.COOKIES[USER_TOKEN] == event.creator.token:
         return HttpResponseForbidden()
     for field, value in event_data:
         if field in Event.UPDATE_FIELDS:
