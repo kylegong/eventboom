@@ -1,12 +1,17 @@
 import json
+import time
+
+from datetime import datetime
 
 from django.core.urlresolvers import reverse
+from django.forms import ModelForm
 from django.http import HttpResponse
 from django.http import HttpResponseBadRequest
 from django.http import HttpResponseForbidden
 from django.http import HttpResponseNotFound
 from django.http import HttpResponseRedirect
 
+from forms import EventForm, UserProfileForm
 from models import Event, UserProfile
 
 USER_TOKEN = 'user_token'
@@ -21,28 +26,35 @@ def render_as_json(data_dict, cookie_dict=None):
 
 def events(request):
     if request.method == "GET":
-        return get_events(request, event_id)
+        return get_events(request)
 
     elif request.method == "POST":
-        return create_event(request, event_id)
+        return create_event(request)
 
 def get_events(request):
-    data = list(Event.objects.all().values(Event.LIST_VALUES))
+    data = list(Event.objects.all().values(*Event.LIST_VALUES))
+    for d in data:
+        d["datetime"] = None if not d["datetime"] else time.mktime(d["datetime"].utctimetuple())
     return render_as_json(data)
 
 def create_event(request):
-    event_data = json.loads(request.POST.get('event'))
-    user_profile_data = json.loads(request.POST.get('user_profile'))
-    user_profile = UserProfile.objects.create(user_profile_data)
-    event = Event.objects.create(event_data)
 
-    if errors:
-        return render_as_json({'errors': errors})
+    # TODO: Get userprofile from request cookie
 
-    data = {
-        'event': event,
-        'user_profile': user_profile,
-    }
+    # Get or create userprofile
+    try:
+        user_profile = UserProfile.objects.get(token=request.POST.get("PUTTOKENHERE"))
+    except UserProfile.DoesNotExist:
+        user_profile = UserProfileForm(request.POST, request.FILES).save()
+
+    # Create event
+    request.POST["creator"] = user_profile.id
+    event = EventForm(request.POST, request.FILES).save()
+
+    # convert to queryset (HACK)
+    # TODO: add unique key
+    data = list(Event.objects.filter(id=event.id).values(*Event.FULL_VALUES))
+
     cookie_dict = {
         USER_TOKEN: user_profile.token
     }

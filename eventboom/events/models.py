@@ -24,8 +24,6 @@ class Event(models.Model):
     min_attendees = models.IntegerField(blank=True, null=True)
     max_attendees = models.IntegerField(blank=True, null=True)
     creator = models.ForeignKey('UserProfile')
-    image = StdImageField(upload_to=IMAGE_PATH, size=(300, 300),
-                          blank=True, null=True)
 
     FULL_VALUES = (
         'id',
@@ -36,7 +34,7 @@ class Event(models.Model):
         'min_attendees',
         'max_attendees',
         'creator_id',
-        'image',
+        'creator__image',
     )
 
     LIST_VALUES = (
@@ -74,7 +72,7 @@ class UserProfile(models.Model):
     phone = models.CharField(max_length=10, blank=True, null=True)
     image = StdImageField(upload_to=IMAGE_PATH, size=(300, 300),
                           blank=True, null=True)
-    token = models.CharField(max_length=DEFAULT_CHAR_FIELD_LENGTH)
+    token = models.CharField(max_length=DEFAULT_CHAR_FIELD_LENGTH, null=True, blank=True)
 
     @staticmethod
     def generate_random_token(bitlength=DEFAULT_TOKEN_BITLENGTH):
