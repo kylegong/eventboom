@@ -1,8 +1,13 @@
 window.Boom = window.Boom || {}
 
-window.Boom.EventModel = Backbone.Model.extend({});
+window.Boom.EventModel = Backbone.Model.extend({
+  initialize: function() {
+    this.set('formattedDate', moment(this.get('date')).format('ddd - MMM Do HH:mm A'));
+  }
+});
 
 window.Boom.EventCollection = Backbone.Collection.extend({
+  model: Boom.EventModel,
   comparator: function(event) {
     return event.get('date');
   },

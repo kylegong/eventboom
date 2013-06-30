@@ -92,7 +92,7 @@
           <% } %>
           </ul>
           <h2><%= title %></h2>
-          <p class="date-time"><%= date %></p>
+          <p class="date-time"><%= formattedDate %></p>
           </a>
         </script>
         <script type="text/template" id="event">
@@ -100,14 +100,14 @@
           <div class="event-view">
           <ul class="tag-list">
           <% for(var tag in tags) { %>
-            <li class="tag neighborhood"><%= tags[tag] %></li>
+            <li class="tag"><%= tags[tag] %></li>
           <% } %>
           <% if (neighborhood) { %>
             <li class="tag neighborhood"><%= neighborhood %></li>
           <% } %>
           </ul>
             <h1><%= title %></h1>
-            <p class="date-time"><%= date %></p>
+            <p class="date-time"><%= formattedDate %></p>
             <div class="event-description"><%= description %></div>
 
           </div>
@@ -256,6 +256,7 @@
         <script src="/scripts/views/event_create.js"></script>
         <script src="/scripts/router.js"></script>
         <script src="/scripts/mock_data.js"></script>
+        <script src="/scripts/vendor/moment.js"></script>
         <script src="/scripts/main.js"></script>
         <!-- endbuild -->
 
