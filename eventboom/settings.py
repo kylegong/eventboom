@@ -96,6 +96,7 @@ TEMPLATE_LOADERS = (
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -127,8 +128,13 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
     'stdimage',
+    'corsheaders',
     'eventboom.events',
 )
+
+# CORS setup to allow all inbound
+CORS_ORIGIN_ALLOW_ALL = True
+
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
