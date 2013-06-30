@@ -1,10 +1,6 @@
 import json
-import time
-
-from datetime import datetime
 
 from django.core.urlresolvers import reverse
-from django.forms import ModelForm
 from django.http import HttpResponse
 from django.http import HttpResponseBadRequest
 from django.http import HttpResponseForbidden
@@ -32,29 +28,34 @@ def events(request):
         return create_event(request)
 
 def get_events(request):
-    data = list(Event.objects.all().values(*Event.LIST_VALUES))
-    for d in data:
-        d["datetime"] = None if not d["datetime"] else time.mktime(d["datetime"].utctimetuple())
+    data = [e.as_dict() for e in Event.objects.all()]
     return render_as_json(data)
 
 def create_event(request):
+    event_data = json.loads(request.POST.get('event'))
+    user_profile_data = json.loads(request.POST.get('user_profile'))
 
-    # TODO: Get userprofile from request cookie
-
-    # Get or create userprofile
-    try:
-        user_profile = UserProfile.objects.get(token=request.POST.get("PUTTOKENHERE"))
-    except UserProfile.DoesNotExist:
-        user_profile = UserProfileForm(request.POST, request.FILES).save()
+    user_profile = None
+    if USER_TOKEN in request.COOKIES:
+        try:
+            user_profile = UserProfile.objects.get(
+                token=request.COOKIES[USER_TOKEN])
+        except UserProfile.DoesNotExist:
+            pass
+    if not user_profile:
+        user_profile = UserProfileForm(user_profile_data, request.FILES).save()
 
     # Create event
-    request.POST["creator"] = user_profile.id
-    event = EventForm(request.POST, request.FILES).save()
+    event_data['tag'] = event_data['tags'][0]
+    form = EventForm(event_data)
+    import sys
+    sys.stderr.write(str(form.errors))
+    event = form.save()
 
-    # convert to queryset (HACK)
-    # TODO: add unique key
-    data = list(Event.objects.filter(id=event.id).values(*Event.FULL_VALUES))
-
+    data = {
+        'event': event.as_dict(),
+        'user_profile': user_profile.as_dict(),
+    }
     cookie_dict = {
         USER_TOKEN: user_profile.token
     }

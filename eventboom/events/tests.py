@@ -1,5 +1,10 @@
+import json
+import urllib
+
 from django.core import exceptions
+from django.core.urlresolvers import reverse
 from django.test import TestCase
+from django.test.client import Client
 
 from eventboom.events import models
 
@@ -35,3 +40,29 @@ class TestUserProfile(TestCase):
             else:
                 user_profile.full_clean()
                 self.assertEquals(user_profile.phone, expected)
+
+class TestViews(TestCase):
+    def test_create_event(self):
+        TEST_DATA = {
+            'event': json.dumps({
+                'id': 1,
+                'title': 'My event',
+                'description': "Stuff",
+                'datetime': "2013-05-01",
+                'tags': ['sports'],
+                'location': 'Lolinda',
+                'neighborhood': 'soma'
+            }),
+            'user_profile': json.dumps({
+                'display_name': 'KG',
+                'email': 'kylegong@gmail.com',
+                'phone': '8888888888',
+            }),
+        }
+        c = Client()
+        url = reverse('events')
+        response = c.post(url, data=TEST_DATA)
+        events = models.Event.objects.all()
+        self.assertEquals(len(events), 1)
+        user_profiles = models.UserProfile.objects.all()
+        self.assertEquals(len(user_profiles), 1)
