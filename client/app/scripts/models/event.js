@@ -2,7 +2,8 @@ window.Boom = window.Boom || {}
 
 window.Boom.EventModel = Backbone.Model.extend({
   defaults: {
-    image: '/images/unknown.jpg'
+    image: '/images/unknown.jpg',
+    creator_name: ''
   },
   initialize: function() {
     if (typeof this.get('datetime') === 'string') {
