@@ -18,7 +18,7 @@ window.Boom.Data = [
     id: 2,
     title: 'Other event',
     description: 'No way!!!',
-    datetime: new Date(2013, 5, 29, 12, 15),
+    datetime: new Date(2013, 6, 1, 12, 15),
     tags: ['food', 'fun'],
     location: 'Sushi place',
     neighborhood: 'soma',
@@ -49,6 +49,28 @@ window.Boom.Data = [
     neighborhood: 'mission',
     max_attendees: 10,
     image: '/images/4.png'
+  },
+  {
+    id: 5,
+    title: 'Dinner at Taco place',
+    description: 'No way!!!',
+    datetime: new Date(2013, 6, 10, 10),
+    tags: ['food'],
+    location: 'Kyle\'s place',
+    neighborhood: 'soma',
+    max_attendees: 10,
+    image: '/images/5.jpg'
+  },
+  {
+    id: 6,
+    title: 'House of Air',
+    description: 'Let\'s go to the house of air!!!',
+    datetime: new Date(2013, 6, 15, 10),
+    tags: ['fun'],
+    location: 'TBD',
+    neighborhood: 'marina',
+    max_attendees: 100,
+    image: '/images/6.jpg'
   }
 ]
 
