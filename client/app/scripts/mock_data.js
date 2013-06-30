@@ -11,7 +11,8 @@ window.Boom.Data = [
     neighborhood: 'soma',
     min_attendees: 4,
     max_attendees: 10,
-    image: '/images/1.png'
+    image: '/images/1.png',
+    creator_name: 'Matt Jones'
   },
   {
     id: 2,
@@ -23,7 +24,8 @@ window.Boom.Data = [
     neighborhood: 'soma',
     min_attendees: 4,
     max_attendees: 10,
-    image: '/images/2.png'
+    image: '/images/2.png',
+    creator_name: 'Kathy'
   },
   {
     id: 3,

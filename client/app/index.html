@@ -108,9 +108,16 @@
               <li class="tag neighborhood"><%= neighborhood %></li>
             <% } %>
             </ul>
-            <img src="<%= image %>" />
-            <h1><%= title %></h1>
-            <p class="date-time"><%= formattedDate %> at <%= location %></p>
+
+            <div class="event-view-header">
+              <div class="creator-info">
+                <img src="<%= image %>" />
+                <p class="name"><%= creator_name %></p>
+              </div>
+              <h1><%= title %></h1>
+              <p class="date-time"><%= formattedDate %> at <%= location %></p>
+            </div>
+            
             <div class="event-description"><%= description %></div>
           </div>
           <div class="event-join-container row-fluid">
