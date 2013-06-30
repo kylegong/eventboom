@@ -33,7 +33,7 @@ def events(request):
 
 
 def get_events(request):
-    data = [e.as_dict() for e in Event.objects.all()]
+    data = [e.as_dict(host='http://' + request.get_host()) for e in Event.objects.all()]
     return render_as_json(data)
 
 
@@ -58,7 +58,7 @@ def create_event(request):
         return HttpResponseBadRequest()
 
     data = {
-        'event': event.as_dict(),
+        'event': event.as_dict(host='http://' + request.get_host()),
         'user_profile': user_profile.as_dict(),
     }
     cookie_dict = {
@@ -99,7 +99,7 @@ def update_event(request, event_id):
     except:
         return HttpResponseBadRequest()
     data = {
-        'event': event.as_dict(),
+        'event': event.as_dict(host='http://' + request.get_host()),
     }
     return render_as_json(data)
 
