@@ -56,12 +56,12 @@ class Event(models.Model):
         'image',
     )
 
-    def as_dict(self):
+    def as_dict(self, host=''):
         d = {field: getattr(self, field) for field in Event.FULL_VALUES}
         d['datetime'] = str(self.datetime)
         d['tags'] = [tag.tag_name for tag in self.tags.all()]
         if self.image:
-            d['image'] = self.image.url
+            d['image'] = host + self.image.url
         return d
 
     def get_email_update_url(self):
