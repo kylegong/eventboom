@@ -37,7 +37,7 @@
         <!-- Underscore templates -->
         <script type="text/template" id="filters">
           <div class="filters">
-          <div class="span3 filter">
+          <div class="date filter span4">
             <label>When:</label>
                 <select id="when">
                   <option value=''>All</option>
@@ -47,7 +47,7 @@
                 </select>
           </div>
 
-          <div class="span3 filter">
+          <div class="date filter span4">
           <label>Category:</label>
           <select id="category">
             <option value=''>All</option>
@@ -65,7 +65,7 @@
           </select>
           </div>
 
-          <div class="span3 filter">
+          <div class="date filter span4">
           <label>Neighborhood:</label>
           <select id="neighborhood">
             <option value=''>All</option>
@@ -78,7 +78,7 @@
 
         </script>
         <script type="text/template" id="index">
-          <div class="filters row"></div>
+          <div class="filters row-fluid"></div>
           <div class="event-list"></div>
         </script>
         <script type="text/template" id="event-short">
@@ -114,80 +114,80 @@
         </script>
         <script type="text/template" id="event-create">
           <a href="#" class="button-alt back">← Back to list</a>
-          <div class="create-view">
-            <h1>Create an event</h1>
+          <div class="create-view row-fluid">
+            <h1>Create Event</h1>
             <form id="event-create-form">
               <label class="hidden">Title:</label>
-              <input type="text" name="title" class="title full-width" placeholder="Title">
+              <input type="text" name="title" class="title span12" placeholder="Title">
 
-              <label>Time:</label>
-
-              <select name="month" class="month">
-                <option value="1">January</option>
-                <option value="2">February</option>
-                <option value="3">March</option>
-                <option value="4">April</option>
-                <option value="5">May</option>
-                <option value="6">June</option>
-                <option value="7">July</option>
-                <option value="8">August</option>
-                <option value="9">September</option>
-                <option value="10">October</option>
-                <option value="11">September</option>
-                <option value="12">December</option>
-              </select>
-
-              <select name="day" class="day">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-              </select>
-
-              <select name="year" class="year">
-                <option value="2013">2013</option>
-                <option value="2014">2014</option>
-              </select>
-
-              <select name="hour" class="hour">
-                <option value="1">1 AM</option>
-                <option value="2">2 AM</option>
-                <option value="3">3 AM</option>
-                <option value="4">4 AM</option>
-                <option value="5">5 AM</option>
-                <option value="6">6 AM</option>
-                <option value="7">7 AM</option>
-                <option value="8">8 AM</option>
-                <option value="9">9 AM</option>
-                <option value="10">10 AM</option>
-                <option value="11">11 AM</option>
-                <option value="12" selected>12 PM</option>
-                <option value="13">1 PM</option>
-                <option value="14">2 PM</option>
-                <option value="15">3 PM</option>
-                <option value="16">4 PM</option>
-                <option value="17">5 PM</option>
-                <option value="18">6 PM</option>
-                <option value="19">7 PM</option>
-                <option value="20">8 PM</option>
-                <option value="21">9 PM</option>
-                <option value="22">10 PM</option>
-                <option value="23">11 PM</option>
-                <option value="0">12 AM</option>
-              </select>
+              <div class="row-fluid"><label>Date & Time</label>
+              
+                            <select name="month" class="month span3">
+                              <option value="1">January</option>
+                              <option value="2">February</option>
+                              <option value="3">March</option>
+                              <option value="4">April</option>
+                              <option value="5">May</option>
+                              <option value="6">June</option>
+                              <option value="7">July</option>
+                              <option value="8">August</option>
+                              <option value="9">September</option>
+                              <option value="10">October</option>
+                              <option value="11">September</option>
+                              <option value="12">December</option>
+                            </select>
+              
+                            <select name="day" class="day span3">
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                              <option value="6">6</option>
+                              <option value="7">7</option>
+                              <option value="8">8</option>
+                              <option value="9">9</option>
+                              <option value="10">10</option>
+                              <option value="11">11</option>
+                              <option value="12">12</option>
+                            </select>
+              
+                            <select name="year" class="year span3">
+                              <option value="2013">2013</option>
+                              <option value="2014">2014</option>
+                            </select>
+              
+                            <select name="hour" class="hour span3">
+                              <option value="1">1 AM</option>
+                              <option value="2">2 AM</option>
+                              <option value="3">3 AM</option>
+                              <option value="4">4 AM</option>
+                              <option value="5">5 AM</option>
+                              <option value="6">6 AM</option>
+                              <option value="7">7 AM</option>
+                              <option value="8">8 AM</option>
+                              <option value="9">9 AM</option>
+                              <option value="10">10 AM</option>
+                              <option value="11">11 AM</option>
+                              <option value="12" selected>12 PM</option>
+                              <option value="13">1 PM</option>
+                              <option value="14">2 PM</option>
+                              <option value="15">3 PM</option>
+                              <option value="16">4 PM</option>
+                              <option value="17">5 PM</option>
+                              <option value="18">6 PM</option>
+                              <option value="19">7 PM</option>
+                              <option value="20">8 PM</option>
+                              <option value="21">9 PM</option>
+                              <option value="22">10 PM</option>
+                              <option value="23">11 PM</option>
+                              <option value="0">12 AM</option>
+                            </select></div>
 
               <label class="hidden">Location:</label>
-              <input type="text" name="location" class="location" placeholder="Location (optional)">
+              <input type="text" name="location" class="location span8" placeholder="Location (optional)">
 
-              <select name="neighborhood" class="neighborhood">
+              <select name="neighborhood" class="neighborhood span4">
                 <option value="null" selected>Neighborhood</option>
                 <option value="Alemeda">Alemeda</option>
                 <option value="Alamo Square">Alamo Square</option>
@@ -205,19 +205,19 @@
               </select>
 
               <label class="hidden">Description:</label>
-              <textarea name="description" class="description full-width" placeholder="Description"></textarea>
+              <textarea name="description" class="description span12" placeholder="Description"></textarea>
 
               <br/>
 
-              <select name="category" class="category">
+              <select name="category" class="category span4">
                 <option value="null" selected>Event Category</option>
                 <option value="lunch">Lunch</option>
                 <option value="sports">Sports</option>
                 <option value="service">Service</option>
               </select>
 
-              <input type="text" name="min_attendees" class="min_attendees" placeholder="Min people (optional)" />
-              <input type="text" name="max_attendees" class="max_attendees" placeholder="Max people (optional)" />
+              <input type="text" name="min_attendees" class="min_attendees span4"  placeholder="Min people (optional)" />
+              <input type="text" name="max_attendees" class="max_attendees span4" placeholder="Max people (optional)" />
 
               <br/>
 
