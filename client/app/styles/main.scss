@@ -173,6 +173,11 @@ h1 {
   .tag-list {
     float: none;
   }
+  .event-view {
+  	.tag-list {
+  		margin-bottom: 1em;
+  	}
+  }
 }
 
 .tag {
@@ -201,6 +206,14 @@ h1 {
   @include border-radius(4px);
   margin-bottom: 0;
   @include clearfix;
+}
+
+.event-view {
+	padding-bottom: 3em;
+}
+
+.event-join-container {
+	margin-bottom: 2em;
 }
 
 @media screen and (max-width: 600px) {
@@ -343,7 +356,7 @@ select {
 }
 
 @media screen and (max-width: 768px) {
-	.success-message {
+	.success-message, .join-count {
 		display: none;
 	}
 }
