@@ -83,6 +83,7 @@
         </script>
         <script type="text/template" id="event-short">
           <a href='#event/<%= id %>'>
+          <img src="<%= image %>" />
           <ul class="tag-list">
           <% for(var tag in tags) { %>
             <li class="tag"><%= tags[tag] %></li>
@@ -106,28 +107,27 @@
               <li class="tag neighborhood"><%= neighborhood %></li>
             <% } %>
             </ul>
+            <img src="<%= image %>" />
             <h1><%= title %></h1>
             <p class="date-time"><%= formattedDate %> at <%= location %></p>
             <div class="event-description"><%= description %></div>
           </div>
-          <div class="event-join-container">
+          <div class="event-join-container row-fluid">
             <div id="event-join-status" align="right">
-              4 people have joined this event.
-              &nbsp;
+              <p class="join-count">4 people have joined this event.</p>
               <input type="button" value="Join This Event" class="show-form button"/>
             </div>
-            <div id="event-join-form-div" style="display:none">
-              <form id="event-join-form">
-                <input type="text" name="name" class="name span2" placeholder="Name" />
-                <input type="text" name="email" class="email span2" placeholder="Email" />
-                <input type="text" name="phone" class="phone span2" placeholder="Phone" />
+            <div id="event-join-form-div" style="display:none" class="event-join-form">
+              <form id="event-join-form" align="right">
+                <input type="text" name="name" class="name span3" placeholder="Name" />
+                <input type="text" name="email" class="email span3" placeholder="Email" />
+                <input type="text" name="phone" class="phone span3" placeholder="Phone" />
                 <input type="submit" value="OK" class="join-event button" />
               </form>
             </div>
             <div id="event-join-success" align="right" style="display:none">
-              You have successfully been added to this event.
-              &nbsp;
-              <input type="button" value="Success" class="button" />
+              <p class="success-message">You have successfully been added to this event.</p>
+              <span class="button success-button">Success!</span>
             </div>
           </div>
         </script>

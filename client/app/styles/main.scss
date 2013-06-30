@@ -134,7 +134,13 @@ h1 {
     width: 100%;
   }
 }
-
+.event img,
+.event-view img {
+  float: left;
+  width: 60px;
+  margin-right: 15px;
+  border-radius: 50%;
+}
 .event-list {
   ul {
     li {
@@ -167,6 +173,11 @@ h1 {
   .tag-list {
     float: none;
   }
+  .event-view {
+  	.tag-list {
+  		margin-bottom: 1em;
+  	}
+  }
 }
 
 .tag {
@@ -197,6 +208,14 @@ h1 {
   @include clearfix;
 }
 
+.event-view {
+	padding-bottom: 3em;
+}
+
+.event-join-container {
+	margin-bottom: 2em;
+}
+
 @media screen and (max-width: 600px) {
   .create-view {
     padding: 10px;
@@ -206,6 +225,10 @@ h1 {
 .back {
   margin-bottom: 1.5em;
   display: inline-block;
+}
+
+form {
+	margin: 0;
 }
 
 form, input, textarea {
@@ -226,6 +249,11 @@ input, textarea {
 
 textarea {
   min-height: 200px;
+}
+
+input[type="button"] {
+	border: none !important;
+	width: 160px;
 }
 
 .hidden {
@@ -298,3 +326,40 @@ select {
     width: 49%;
   }
 }
+
+.event-join-container {
+	@include clearfix;
+}
+
+.event-join-form {
+	float: right;
+	input {
+		margin-bottom: 0;
+	}
+	input[type="submit"] {
+		border: none !important;
+		width: 50px;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.event-join-form {
+		input {
+			margin-bottom: 8px;
+		}
+	}
+}
+
+.success-message, .join-count {
+	display: inline-block;
+	margin-right: 8px;
+}
+
+@media screen and (max-width: 768px) {
+	.success-message, .join-count {
+		display: none;
+	}
+}
+
+
+
