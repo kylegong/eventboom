@@ -70,6 +70,9 @@
           <% for(var tag in tags) { %>
             <li class="tag"><%= tags[tag] %></li>
           <% } %>
+          <% if (neighborhood) { %>
+            <li class="tag neighborhood"><%= neighborhood %></li>
+          <% } %>
           </ul>
           <h2><%= title %></h2>
           <p class="date-time"><%= date %></p>
@@ -80,7 +83,10 @@
           <div class="event-view">
           <ul class="tag-list">
           <% for(var tag in tags) { %>
-            <li class="tag"><%= tags[tag] %></li>
+            <li class="tag neighborhood"><%= tags[tag] %></li>
+          <% } %>
+          <% if (neighborhood) { %>
+            <li class="tag neighborhood"><%= neighborhood %></li>
           <% } %>
           </ul>
             <h1><%= title %></h1>
