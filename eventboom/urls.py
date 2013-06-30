@@ -8,6 +8,9 @@ from events import views
 urlpatterns = patterns('',
     url(r'^api/v1/events/(?P<event_id>\d+)/$', views.event, name='event'),
     url(r'^api/v1/events/$', views.events, name='events'),
+
+    url(r'^email/events/(?P<event_id>\d+)/$', views.email_update,
+        name='email_update'),
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 

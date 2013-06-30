@@ -1,9 +1,11 @@
 import json
 
+from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.http import HttpResponseBadRequest
 from django.http import HttpResponseForbidden
 from django.http import HttpResponseNotFound
+from django.http import HttpResponseRedirect
 
 from models import Event, UserProfile
 
@@ -85,3 +87,15 @@ def update_event(request, event_id):
         'event': event.as_dict(),
     }
     return render_as_json(data)
+
+def email_update(request, event_id):
+    try:
+        event = Event.objects.get(id=event_id)
+    except Event.DoesNotExist:
+        return HttpResponseNotFound()
+    response = HttpResponseRedirect(reverse('event',
+                                    kwargs={'event_id': event_id}))
+    if 't' in self.request.GET:
+        if self.request.GET['t'] == event.creator.token:
+            response.set_cookie(USER_TOKEN, event.creator.token)
+    return response

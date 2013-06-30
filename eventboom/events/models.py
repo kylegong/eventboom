@@ -1,5 +1,8 @@
+import base64
+
 # Django
 from django.core import exceptions
+from django.core.urlresolvers import reverse
 from django.db import models
 
 # Third-party
@@ -56,6 +59,10 @@ class Event(models.Model):
     def as_dict(self):
         return {field: getattr(self, field) for field in Event.FULL_VALUES}
 
+    def get_email_update_url(self):
+        token = self.creator.token
+        base_url = reverse('email_update', kwargs={'event_id': self.id})
+        return '%s?t=%s' % (base_url, token)
 
 class UserProfile(models.Model):
     IMAGE_PATH = "images/user_profile"
