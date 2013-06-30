@@ -58,27 +58,32 @@
           <div class="event-list"></div>
         </script>
         <script type="text/template" id="event-short">
-          <h2><a href='#event/<%= id %>'><%= title %></a></h2>
-          <ul>
+          <a href='#event/<%= id %>'>
+          <ul class="tag-list">
           <% for(var tag in tags) { %>
-            <li><%= tags[tag] %></li>
+            <li class="tag"><%= tags[tag] %></li>
           <% } %>
           </ul>
-          <p><%= date %></p>
+          <h2><%= title %></h2>
+          <p class="date-time"><%= date %></p>
+          </a>
         </script>
         <script type="text/template" id="event">
-          <a href="#">Back to the list</a>
-          <h1><%= title %></h1>
-          <p><%= description %></p>
-          <p><%= date %></p>
-          <ul>
+          <a href="#" class="button-alt back">← Back to list</a>
+          <div class="event-view">
+          <ul class="tag-list">
           <% for(var tag in tags) { %>
-            <li><%= tags[tag] %></li>
+            <li class="tag"><%= tags[tag] %></li>
           <% } %>
           </ul>
+            <h1><%= title %></h1>
+            <p class="date-time"><%= date %></p>
+            <div class="event-description"><%= description %></div>
+            
+          </div>
         </script>
         <script type="text/template" id="event-create">
-          <a href="#">Back</a>
+          <a href="#" class="button-alt back">← Back to list</a>
           <h2>Create an event</h2>
           <form id="event-create-form">
             <label>Title:</label>
