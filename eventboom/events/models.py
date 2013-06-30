@@ -32,7 +32,7 @@ class Event(models.Model):
     description = models.TextField(blank=True, null=True)
     min_attendees = models.IntegerField(blank=True, null=True)
     max_attendees = models.IntegerField(blank=True, null=True)
-    image = StdImageField(upload_to=IMAGE_PATH, size=(300, 300),
+    image = StdImageField(upload_to=IMAGE_PATH, size=(1024, 1024),
                           blank=True, null=True)
 
     FULL_VALUES = (
@@ -40,6 +40,7 @@ class Event(models.Model):
         'title',
         'location',
         'description',
+        'neighborhood',
         'min_attendees',
         'max_attendees',
     )
