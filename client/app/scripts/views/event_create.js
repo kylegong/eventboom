@@ -59,9 +59,9 @@ window.Boom.EventCreateView = Backbone.View.extend({
     var field_value = form.find(field_class).val();
     if (field_value == '' || field_value == 'null') {
       valid = false;
-      form.find(field_class).css({'border': "1px solid #c00"})
+      form.find(field_class).addClass('error');
     } else {
-      form.find(field_class).css({'border': "1px solid #ccc"})
+      form.find(field_class).removeClass('error');
     }
     return valid;
   }

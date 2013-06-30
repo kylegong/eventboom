@@ -4,6 +4,8 @@ $iconWhiteSpritePath: "../images/glyphicons-halflings-white.png";
 @import 'sass-bootstrap/lib/bootstrap';
 @import 'sass-bootstrap/lib/responsive';
 
+@import '/styles/animate-custom.css';
+
 $darkblue: #323c46;
 $green: #7ec479;
 $lightgrey: #a6a6a6;
@@ -359,6 +361,10 @@ select {
 	.success-message, .join-count {
 		display: none;
 	}
+}
+
+.error {
+	border-color: $orange !important;
 }
 
 

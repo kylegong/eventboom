@@ -17,7 +17,7 @@ window.Boom.EventView = Backbone.View.extend({
   showForm: function(e) {
     e.preventDefault();
     $('div#event-join-status').hide();
-    $('div#event-join-form-div').show();
+    $('div#event-join-form-div').fadeIn();
   },
   joinEvent: function(e) {
     e.preventDefault();
@@ -25,7 +25,7 @@ window.Boom.EventView = Backbone.View.extend({
     var form = $('form#event-join-form');
     if (this.validateJoin()) {
       $('div#event-join-form-div').hide();
-      $('div#event-join-success').show();
+      $('div#event-join-success').fadeIn();
     }
   },
   validateJoin: function() {
@@ -44,9 +44,9 @@ window.Boom.EventView = Backbone.View.extend({
 
     if (field_value == '' || field_value == 'null') {
       valid = false;
-      form.find(field_class).css({'border': "1px solid #c00"})
+      form.find(field_class).addClass("error");
     } else {
-      form.find(field_class).css({'border': "1px solid #ccc"})
+      form.find(field_class).removeClass("error");
     }
     return valid;
   }
