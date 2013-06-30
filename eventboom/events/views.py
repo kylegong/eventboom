@@ -10,6 +10,7 @@ from django.http import HttpResponseBadRequest
 from django.http import HttpResponseForbidden
 from django.http import HttpResponseNotFound
 from django.http import HttpResponseRedirect
+from django.conf import settings
 
 from forms import EventForm, UserProfileForm
 from models import Event, UserProfile
@@ -24,6 +25,8 @@ def render_as_json(data_dict, cookie_dict=None):
             response.set_cookie(k, v)
     return response
 
+
+
 def events(request):
     if request.method == "GET":
         return get_events(request)
@@ -31,11 +34,16 @@ def events(request):
     elif request.method == "POST":
         return create_event(request)
 
+
+
 def get_events(request):
-    data = list(Event.objects.all().values(*Event.LIST_VALUES))
+    data = list(Event.objects.all().values())
     for d in data:
         d["datetime"] = None if not d["datetime"] else time.mktime(d["datetime"].utctimetuple())
+        d["image"] = settings.MEDIA_URL + d["image"]
     return render_as_json(data)
+
+
 
 def create_event(request):
 
