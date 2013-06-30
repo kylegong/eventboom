@@ -5,7 +5,7 @@ window.Boom.EventModel = Backbone.Model.extend({
     if (typeof this.get('datetime') === 'string') {
       this.set('datetime', new Date(this.get('datetime')));
     }
-    this.set('formattedDate', moment(this.get('datetime')).format('ddd - MMM Do HH:mm A'));
+    this.set('formattedDate', moment(this.get('datetime')).format('ddd, MMM Do HH:mm A'));
   }
 });
 

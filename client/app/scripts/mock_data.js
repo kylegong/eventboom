@@ -37,7 +37,8 @@ window.Boom.Data = [
     neighborhood: 'mission',
     min_attendees: 4,
     max_attendees: 30,
-    image: '/images/3.png'
+    image: '/images/3.png',
+    creator_name: 'Gina'
   },
   {
     id: 4,
@@ -48,7 +49,8 @@ window.Boom.Data = [
     location: 'Kyle\'s place',
     neighborhood: 'mission',
     max_attendees: 10,
-    image: '/images/4.png'
+    image: '/images/4.png',
+    creator_name: 'James'
   }
 ]
 
