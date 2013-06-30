@@ -1,4 +1,5 @@
 import base64
+from datetime import datetime
 
 # Django
 from django.core import exceptions
@@ -20,16 +21,41 @@ def generate_random_token(token_length=DEFAULT_TOKEN_LENGTH):
 # Models
 class Event(models.Model):
     IMAGE_PATH = "images/event"
+    # Neighborhood validation disabled
+    NEIGHBORHOODS = (
+        ("Alameda",           "Alameda"),
+        ("Alamo Square",      "Alamo Square"),
+        ("Castro",            "Castro"),
+        ("Cole Valley",       "Cole Valley"),
+        ("Cow Hollow",        "Cow Hollow"),
+        ("Hayes Valley",      "Hayes Valley"),
+        ("Inner Sunset",      "Inner Sunset"),
+        ("Lower Pac Heights", "Lower Pac Heights"),
+        ("Marina",            "Marina"),
+        ("Mission",           "Mission"),
+        ("Noe Valley",        "Noe Valley"),
+        ("NOPA",              "NOPA"),
+        ("North Beach",       "North Beach"),
+        ("Pac Heights",       "Pac Heights"),
+        ("Potrero Hill",      "Potrero Hill"),
+        ("Richmond",          "Richmond"),
+        ("SOMA",              "SOMA"),
+        ("Sunset",            "Sunset"),
+        ("Tenderloin",        "Tenderloin"),
+        ("Western Addition",  "Western Addition"),
+    )
 
     title = models.CharField(max_length=DEFAULT_CHAR_FIELD_LENGTH)
-    datetime = models.DateTimeField(blank=True, null=True)
+    datetime = models.DateTimeField(default=datetime.now())
     # more sophisticated location?
     location = models.CharField(max_length=DEFAULT_CHAR_FIELD_LENGTH,
                                 blank=True, null=True)
+    neighborhood = models.CharField(max_length=DEFAULT_CHAR_FIELD_LENGTH) #choices=NEIGHBORHOODS)
     description = models.TextField(blank=True, null=True)
     min_attendees = models.IntegerField(blank=True, null=True)
     max_attendees = models.IntegerField(blank=True, null=True)
-    creator = models.ForeignKey('UserProfile')
+    image = StdImageField(upload_to=IMAGE_PATH, size=(300, 300),
+                          blank=True, null=True)
 
     FOOD = 'Food'
     GAMES = 'Games'
@@ -87,10 +113,8 @@ class UserProfile(models.Model):
     display_name = models.CharField(max_length=DEFAULT_CHAR_FIELD_LENGTH)
     email = models.EmailField(blank=True, null=True)
     phone = models.CharField(max_length=10, blank=True, null=True)
-    image = StdImageField(upload_to=IMAGE_PATH, size=(300, 300),
-                          blank=True, null=True)
     token = models.CharField(max_length=DEFAULT_CHAR_FIELD_LENGTH,
-                             default=generate_random_token)
+                             default=generate_random_token, blank=True, null=True)
 
     @staticmethod
     def _validate_phone(phone_number):
